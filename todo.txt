@@ -1,0 +1,5 @@
+1) raw organism
+	- class w/ data architecture
+	- moving
+	- ability 1 : smthg
+	- passive 1 : smthg
