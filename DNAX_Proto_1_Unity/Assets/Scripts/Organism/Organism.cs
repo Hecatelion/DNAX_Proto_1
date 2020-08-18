@@ -20,6 +20,12 @@ public class Organism : MonoBehaviour
 		{
 			dna.Log();
 		}
+
+		if (Input.GetKeyDown(KeyCode.Keypad1))
+		{
+			_ = 0; /// use SkillEffect : Heal
+		}
+
 	}
 
 	public static GameObject InstantiateNewOrganism(DNA _dna)

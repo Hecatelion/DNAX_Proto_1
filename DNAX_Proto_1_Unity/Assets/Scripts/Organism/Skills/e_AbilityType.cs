@@ -2,8 +2,8 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public enum e_GeneType
+public enum e_AbilityType
 {
 	None,
-	Photosynthesis
+	Spikes
 }

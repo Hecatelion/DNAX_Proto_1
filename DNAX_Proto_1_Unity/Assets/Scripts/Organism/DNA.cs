@@ -12,8 +12,6 @@ public class DNA
 		genes = _genes ?? new List<e_GeneType>();
 	}
 
-
-
 	// -----------------------------
 	// Debug Methods
 

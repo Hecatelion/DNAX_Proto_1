@@ -1,5 +1,20 @@
-1) raw organism
-	- class w/ data architecture
-	- moving
-	- ability 1 : smthg
-	- passive 1 : smthg
+cur step :
+
+• raw organism
+ - class w/ data architecture
+ - ability 1 : smthg
+ - passive 1 : smthg
+ - moving
+
+next tasks: 
+ - set /// color in vs2019 so it's more visible 
+   (stands for "should be done" comment, not description ones)
+
+ - e_SkillEffectType
+ - TheSkillEffectFactory
+ - put a Stats variable in Organism
+ - create SkillEffect : Heal
+ - try to launch heal (skipping passive/ability system)
+ - create 1 ability using Heal
+ - create 1 passive using Heal
+ - make Organism get abilities and passive from DNA
