@@ -4,6 +4,7 @@ using UnityEngine;
 
 public enum e_AbilityType
 {
-	None,
-	Spikes
+	None = -1,
+	Spikes,
+	Count
 }

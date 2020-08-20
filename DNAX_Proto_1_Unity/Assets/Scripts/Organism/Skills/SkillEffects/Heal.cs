@@ -4,12 +4,12 @@ using UnityEngine;
 
 public class Heal : SkillEffect
 {
-	StatsModifier modif; /// should it be SerializeField so it is easier to balance ?
+	StatsModifier modif; // TODO :  should it be SerializeField so it is easier to balance ?
 
 	protected override void Launch()
 	{
 		base.Launch();
 
-		_ = 0; /// heal code, implying StatModifyer
+		_ = 0; // TODO :  heal code, implying StatModifier
 	}
 }

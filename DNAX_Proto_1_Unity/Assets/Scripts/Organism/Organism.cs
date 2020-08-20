@@ -23,7 +23,9 @@ public class Organism : MonoBehaviour
 
 		if (Input.GetKeyDown(KeyCode.Keypad1))
 		{
-			_ = 0; /// use SkillEffect : Heal
+			_ = 0; // TODO :  use SkillEffect : Heal
+
+			TheSkillEffectManager.Func();
 		}
 
 	}

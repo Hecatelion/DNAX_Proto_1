@@ -2,9 +2,9 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public enum e_PassiveType
+public enum e_SkillEffectTypes
 {
 	None = -1,
-	Photosynthesis,
+	Heal,
 	Count
 }

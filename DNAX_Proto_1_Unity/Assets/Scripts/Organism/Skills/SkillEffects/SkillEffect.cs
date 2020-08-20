@@ -4,6 +4,8 @@ using UnityEngine;
 
 public abstract class SkillEffect : MonoBehaviour
 {
+	[SerializeField] public e_SkillEffectTypes type;
+
 	Callback onLaunch = () => { };
 	Callback onEnd = () => { };
 

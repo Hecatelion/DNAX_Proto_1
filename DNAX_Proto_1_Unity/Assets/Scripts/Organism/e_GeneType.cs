@@ -4,7 +4,8 @@ using UnityEngine;
 
 public enum e_GeneType
 {
-	None,
+	None = -1,
 	Photosynthesis,
-	Spikes
+	Spikes,
+	Count
 }
