@@ -305,7 +305,7 @@ GameObject:
   - component: {fileID: 2022128615}
   - component: {fileID: 2022128616}
   m_Layer: 0
-  m_Name: Organism
+  m_Name: TempOrganismBuilder
   m_TagString: Untagged
   m_Icon: {fileID: 6519382022992737161, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
@@ -495,5 +495,28 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3922806304599642148, guid: 437527b430a01ab41a9e63c3aed49b4e,
+        type: 3}
+      propertyPath: customInputDatas.Array.size
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 3922806304599642148, guid: 437527b430a01ab41a9e63c3aed49b4e,
+        type: 3}
+      propertyPath: customInputDatas.Array.data[0]
+      value: 
+      objectReference: {fileID: 11400000, guid: 6ddee5be58b577a4eaae699ef27fcfc1,
+        type: 2}
+    - target: {fileID: 3922806304599642148, guid: 437527b430a01ab41a9e63c3aed49b4e,
+        type: 3}
+      propertyPath: customInputDatas.Array.data[1]
+      value: 
+      objectReference: {fileID: 11400000, guid: e9b267d6009d37443b3781d4d44f5bb6,
+        type: 2}
+    - target: {fileID: 3922806304599642148, guid: 437527b430a01ab41a9e63c3aed49b4e,
+        type: 3}
+      propertyPath: customInputDatas.Array.data[2]
+      value: 
+      objectReference: {fileID: 11400000, guid: 5752f54aa0be34c4eb3aa57869d74156,
+        type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 437527b430a01ab41a9e63c3aed49b4e, type: 3}

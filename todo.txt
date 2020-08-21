@@ -13,9 +13,12 @@ next tasks:
  - input system (w/ bind)
  - make CustomInputs Scriptable Objects (or Serializable + Script Editor but not found of this idea)
 
+ - make Ability : IBindable
  - create real Organism prefab
  - put a Stats variable in Organism
- - put visual effect on organism (appart from logic code)
- - make Organism get abilities and passive from DNA
+ - make Organism get stats, abilities & passives from DNA
+ - implement Heal & Photosynthesis gameplay logic for real
+ - (?) Condition & Behavior Scripting
  - dot
  - make him walk
+ - put visual effect on organism (appart from logic code)

@@ -20,10 +20,12 @@ public class Organism : MonoBehaviour
 		abilities = new List<Ability>();
 
 		// temporary : must be deduced from DNA
-		passives.Add(TheSkillManager.InstantiatePassive(e_PassiveType.Photosynthesis, this).GetComponent<Passive>());
+		//passives.Add(TheSkillManager.InstantiatePassive(e_PassiveType.Photosynthesis, this).GetComponent<Passive>());
 		abilities.Add(TheSkillManager.InstantiateAbility(e_AbilityType.Heal, this).GetComponent<Ability>());
 
 		TheCustomInputManager.Bind(abilities[0].RequestActivation, e_CommandType.Ability0);
+		TheCustomInputManager.Bind(Funk1, e_CommandType.Ability1);
+		TheCustomInputManager.Bind(Funk2, e_CommandType.Ability5);
 	}
 
 	void Update()
@@ -31,12 +33,6 @@ public class Organism : MonoBehaviour
 		if (Input.GetKeyDown(KeyCode.Space))
 		{
 			dna.Log();
-		}
-
-		// temporary : must be bound in TheInputManager
-		if (Input.GetKeyDown(KeyCode.Keypad1))
-		{
-			abilities[0].RequestActivation();
 		}
 	}
 
