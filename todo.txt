@@ -7,12 +7,15 @@ cur step :
  - moving
 
 next tasks: 
-
- - del e_SkillEffectType
- - TheSkillManager
-
- - put a Stats variable in Organism
+ 
  - create Passive : Photosynthesis
  - create Ability : Heal
  - input system (w/ bind)
+ - make CustomInputs Scriptable Objects (or Serializable + Script Editor but not found of this idea)
+
+ - create real Organism prefab
+ - put a Stats variable in Organism
+ - put visual effect on organism (appart from logic code)
  - make Organism get abilities and passive from DNA
+ - dot
+ - make him walk

@@ -45,3 +45,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   type: 0
   healPerSecond: 2
+  frequency: 1

@@ -5,6 +5,9 @@ using UnityEngine;
 public class Organism : MonoBehaviour
 {
 	private DNA dna;
+	private List<Passive> passives;
+	private List<Ability> abilities;
+	private Stats stats;
 
 	private void Init(DNA _dna)
 	{
@@ -13,9 +16,14 @@ public class Organism : MonoBehaviour
 
 	void Start()
     {
-		// temp
-		TheSkillManager.InstantiatePassive(e_PassiveType.Photosynthesis, this);
-		TheSkillManager.InstantiateAbility(e_AbilityType.Heal, this);
+		passives = new List<Passive>();
+		abilities = new List<Ability>();
+
+		// temporary : must be deduced from DNA
+		passives.Add(TheSkillManager.InstantiatePassive(e_PassiveType.Photosynthesis, this).GetComponent<Passive>());
+		abilities.Add(TheSkillManager.InstantiateAbility(e_AbilityType.Heal, this).GetComponent<Ability>());
+
+		TheCustomInputManager.Bind(abilities[0].RequestActivation, e_CommandType.Ability0);
 	}
 
 	void Update()
@@ -25,11 +33,11 @@ public class Organism : MonoBehaviour
 			dna.Log();
 		}
 
+		// temporary : must be bound in TheInputManager
 		if (Input.GetKeyDown(KeyCode.Keypad1))
 		{
-			_ = 0; // TODO :  use SkillEffect : Heal
+			abilities[0].RequestActivation();
 		}
-
 	}
 
 	public static GameObject InstantiateNewOrganism(DNA _dna)
@@ -41,5 +49,14 @@ public class Organism : MonoBehaviour
 		go.AddComponent<Organism>().Init(_dna);
 
 		return go;
+	}
+
+	void Funk1()
+	{
+		Debug.Log("Funk 1");
+	}
+	void Funk2()
+	{
+		Debug.Log("Funk 2");
 	}
 }

@@ -5,6 +5,9 @@ using UnityEngine;
 public class Photosynthesis : Passive
 {
 	[SerializeField] int healPerSecond;
+	[SerializeField] float frequency;
+
+	float t;
 
 	protected override void Start()
 	{
@@ -16,13 +19,21 @@ public class Photosynthesis : Passive
 	protected override void Update()
 	{
 		base.Update();
+
+		t += Time.deltaTime;
+		if (t > frequency)
+		{
+			t -= frequency;
+
+			Activate();
+		}
 	}
 
 	protected override void Activate()
 	{
 		base.Activate();
 
-		Debug.Log("Ability : \"Photosyntesis\" Launched."); // TODO :  heal code, implying StatModifier
+		Debug.Log("Ability : \"Photosyntesis\" activation."); // TODO :  heal code, implying StatModifier
 	}
 
 	protected override void Deactivate()

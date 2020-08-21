@@ -26,7 +26,7 @@ public class TheSkillManager : MonoBehaviour
     void Update()
     { }
 
-	private void instance_InstantiatePassive(e_PassiveType _passive, Organism _org) // var Context ?
+	private GameObject instance_InstantiatePassive(e_PassiveType _passive, Organism _org) // var Context ?
 	{
 		GameObject passivePrefab = (from prefab in passivePrefabs where prefab.GetComponent<Passive>().Type == _passive select prefab).ToList()[0];
 
@@ -35,14 +35,16 @@ public class TheSkillManager : MonoBehaviour
 			Debug.LogError("Passive Type : \"" + _passive.ToString() + "\" not found in TheSkillManager.\n" +
 			"Please ensure present is referenced in the List");
 
-			return;
+			return null;
 		}
 
 		GameObject passiveCreated = Instantiate(passivePrefab, this.transform);
 		passiveCreated.GetComponent<Skill>().Init(_org);
+
+		return passiveCreated;
 	}
 
-	private void instance_InstantiateAbility(e_AbilityType _ability, Organism _org) // var Context + Input
+	private GameObject instance_InstantiateAbility(e_AbilityType _ability, Organism _org) // var Context + Input
 	{
 		GameObject abilityPrefab = (from prefab in abilityPrefabs where prefab.GetComponent<Ability>().Type == _ability select prefab).ToList()[0];
 
@@ -51,24 +53,26 @@ public class TheSkillManager : MonoBehaviour
 			Debug.LogError("Ability Type : \"" + _ability.ToString() + "\" not found in TheSkillManager.\n" +
 			"Please ensure present is referenced in the List");
 
-			return;
+			return null;
 		}
 
 		GameObject abilityCreated = Instantiate(abilityPrefab, this.transform);
 		abilityCreated.GetComponent<Skill>().Init(_org);
 		_ = 0; // must bind it to input manager
+
+		return abilityCreated;
 	}
 
 	// --------------------------------
 	// Singleton static functions
 
-	public static void InstantiateAbility(e_AbilityType _ability, Organism _org)
+	public static GameObject InstantiateAbility(e_AbilityType _ability, Organism _org)
 	{
-		instance.instance_InstantiateAbility(_ability, _org);
+		return instance.instance_InstantiateAbility(_ability, _org);
 	}
 
-	public static void InstantiatePassive(e_PassiveType _passive, Organism _org)
+	public static GameObject InstantiatePassive(e_PassiveType _passive, Organism _org)
 	{
-		instance.instance_InstantiatePassive(_passive, _org);
+		return instance.instance_InstantiatePassive(_passive, _org);
 	}
 }
