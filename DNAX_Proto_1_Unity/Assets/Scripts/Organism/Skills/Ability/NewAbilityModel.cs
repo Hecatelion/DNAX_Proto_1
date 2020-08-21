@@ -24,8 +24,8 @@ public class NewAbilityModel : Ability
 		base.Deactivate();
 	}
 
-	public override void RequestActivation()
+	public override void RequestAction()
 	{
-		base.Update();
+		base.RequestAction();
 	}
 }
