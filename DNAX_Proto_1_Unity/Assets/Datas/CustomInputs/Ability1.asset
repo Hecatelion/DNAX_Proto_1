@@ -13,5 +13,6 @@ MonoBehaviour:
   m_Name: Ability1
   m_EditorClassIdentifier: 
   type: 2
-  keysToPress: 01010000
+  keysToPress: 43010000
   keysToHold: 
+  keysToNotTouch: 30010000

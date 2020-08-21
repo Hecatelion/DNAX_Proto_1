@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Ability : Skill
+public class Ability : Skill, IBindable
 {
 	[SerializeField] protected e_AbilityType type;
 	public e_AbilityType Type { get => type; }
@@ -27,7 +27,7 @@ public class Ability : Skill
 		base.Deactivate();
 	}
 
-	public virtual void RequestActivation()
+	public virtual void RequestAction()
 	{
 		Debug.Log(type + " requested.");
 	}

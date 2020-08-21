@@ -46,9 +46,9 @@ public class Heal : Ability
 		base.Deactivate();
 	}
 
-	public override void RequestActivation()
+	public override void RequestAction()
 	{
-		base.Update();
+		base.RequestAction();
 
 		if (!isInCooldown)
 		{
