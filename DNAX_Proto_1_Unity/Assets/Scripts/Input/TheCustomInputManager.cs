@@ -8,13 +8,20 @@ public class TheCustomInputManager : MonoBehaviour
 {
 	private static TheCustomInputManager instance;
 
-	[SerializeField] private List<CustomInput> customInputs = new List<CustomInput>();
+	[SerializeField] private List<CustomInputData> customInputDatas = new List<CustomInputData>();
+	public List<CustomInput> customInputs; // make it prvt
 
 	void Start()
 	{
 		if (instance == null)
 		{
 			instance = this;
+
+			customInputs = new List<CustomInput>();
+			foreach (var data in customInputDatas)
+			{
+				customInputs.Add(new CustomInput(data));
+			}
 		}
 		else
 		{
@@ -37,7 +44,7 @@ public class TheCustomInputManager : MonoBehaviour
 
 	private CustomInput instance_GetInputOfType(e_CommandType _type)
 	{
-		List<CustomInput> correspondingOnes = (from customInput in customInputs where customInput.Type == _type select customInput).ToList();
+		List<CustomInput> correspondingOnes = (from customInput in customInputs where customInput.data.Type == _type select customInput).ToList();
 		
 		if (correspondingOnes.Count > 1)
 		{

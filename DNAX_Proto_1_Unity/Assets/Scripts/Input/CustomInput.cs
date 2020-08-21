@@ -2,16 +2,15 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-
 public class CustomInput
 {
-	[SerializeField] private e_CommandType type;
-	public e_CommandType Type { get => type; }
-
-	[SerializeField] List<KeyCode> keysToPress;
-	[SerializeField] List<KeyCode> keysToHold;
-
+	public CustomInputData data;
 	public Callback onInput = () => { };
+
+	public CustomInput(CustomInputData _data)
+	{
+		data = _data;
+	}
 
 	public void Update()
 	{
@@ -23,7 +22,7 @@ public class CustomInput
 
 	public bool IsPerformed()
 	{
-		foreach (var key in keysToPress)
+		foreach (var key in data.keysToPress)
 		{
 			if (!Input.GetKeyDown(key))
 			{
@@ -31,9 +30,17 @@ public class CustomInput
 			}
 		}
 
-		foreach (var key in keysToHold)
+		foreach (var key in data.keysToHold)
 		{
 			if (!Input.GetKey(key))
+			{
+				return false;
+			}
+		}
+
+		foreach (var key in data.keysToNotTouch)
+		{
+			if (Input.GetKey(key) || Input.GetKeyDown(key))
 			{
 				return false;
 			}
