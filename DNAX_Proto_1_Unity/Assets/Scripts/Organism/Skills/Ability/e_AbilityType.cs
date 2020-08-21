@@ -2,9 +2,10 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public enum e_SkillEffectTypes
+public enum e_AbilityType
 {
 	None = -1,
-	Heal,
-	Count
+	Spikes,
+	Count,
+	Heal
 }

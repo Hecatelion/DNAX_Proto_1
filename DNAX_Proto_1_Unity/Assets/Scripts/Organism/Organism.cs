@@ -12,7 +12,11 @@ public class Organism : MonoBehaviour
 	}
 
 	void Start()
-    { }
+    {
+		// temp
+		TheSkillManager.InstantiatePassive(e_PassiveType.Photosynthesis, this);
+		TheSkillManager.InstantiateAbility(e_AbilityType.Heal, this);
+	}
 
 	void Update()
 	{
@@ -24,8 +28,6 @@ public class Organism : MonoBehaviour
 		if (Input.GetKeyDown(KeyCode.Keypad1))
 		{
 			_ = 0; // TODO :  use SkillEffect : Heal
-
-			TheSkillEffectManager.Func();
 		}
 
 	}

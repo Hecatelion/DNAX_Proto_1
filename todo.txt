@@ -7,14 +7,12 @@ cur step :
  - moving
 
 next tasks: 
- - set /// color in vs2019 so it's more visible 
-   (stands for "should be done" comment, not description ones)
 
- - e_SkillEffectType
- - TheSkillEffectFactory
+ - del e_SkillEffectType
+ - TheSkillManager
+
  - put a Stats variable in Organism
- - create SkillEffect : Heal
- - try to launch heal (skipping passive/ability system)
- - create 1 ability using Heal
- - create 1 passive using Heal
+ - create Passive : Photosynthesis
+ - create Ability : Heal
+ - input system (w/ bind)
  - make Organism get abilities and passive from DNA
