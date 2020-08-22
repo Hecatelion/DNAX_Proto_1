@@ -8,10 +8,11 @@ cur step :
 
 next tasks: 
 
- - do a generic singleton class
-
  - implement Heal & Photosynthesis gameplay logic for real
- - (?) Condition & Behavior Scripting
+ - auto implemented properties on Stats { public get; private set }
  - dot
+ - death 
+
+ - (?) properties lowerCamelCase rework (to avoid properties named like their type)
  - make him walk
  - put visual effect on organism (appart from logic code)

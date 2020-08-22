@@ -4,10 +4,10 @@ using UnityEngine;
 
 public abstract class Skill: MonoBehaviour
 {
-	Organism organism;
+	protected Organism organism;
 
-	Callback onActivation = () => { };
-	Callback onDeactivation = () => { };
+	public Callback onActivation = () => { };
+	public Callback onDeactivation = () => { };
 
 	public void Init(Organism _org)
 	{

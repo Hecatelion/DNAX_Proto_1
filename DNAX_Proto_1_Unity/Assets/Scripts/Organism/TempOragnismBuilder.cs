@@ -13,7 +13,7 @@ public class TempOragnismBuilder : MonoBehaviour
     void Start()
     {
 		dna1 = new DNA(new List<e_GeneType> { e_GeneType.Photosynthesis, e_GeneType.None, e_GeneType.None });
-		dna2 = new DNA(new List<e_GeneType> { e_GeneType.Heal });
+		dna2 = new DNA(new List<e_GeneType> { e_GeneType.Heal, e_GeneType.None });
 
 		organismGO = InstantiateNewOrganism(dna1);
     }

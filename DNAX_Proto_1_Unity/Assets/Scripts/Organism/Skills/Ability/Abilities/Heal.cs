@@ -36,8 +36,10 @@ public class Heal : Ability
 	{
 		base.Activate();
 
+		organism.ApplyStatsModif(new StatsModifier() { hpCur = heal });
 		isInCooldown = true;
-		Debug.Log("Ability : \"Heal\" Launched."); // TODO :  heal code, implying StatModifier
+
+		Debug.Log("Ability : \"Heal\" Launched.");
 	}
 
 	protected override void Deactivate()

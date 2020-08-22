@@ -9,7 +9,8 @@ public class Organism : MonoBehaviour
 	private DNA dna;
 	private List<Passive> passives;
 	private List<Ability> abilities;
-	private Stats stats;
+
+	public Stats Stats { get; private set; }
 
 	void Start()
     { }
@@ -19,9 +20,14 @@ public class Organism : MonoBehaviour
 		if (Input.GetKeyDown(KeyCode.KeypadEnter))
 		{
 			dna.Log();
-			stats.Log();
+			Stats.Log();
 		}
+
+		DotUpdate();
+		DeathUpdate();
 	}
+
+	#region Creation Management
 
 	public void Init(DNA _dna)
 	{
@@ -29,7 +35,7 @@ public class Organism : MonoBehaviour
 
 		int nbGene = dna.Genes.Count;
 
-		stats = new Stats() + new StatsModifier() {
+		Stats = new Stats() + new StatsModifier() {
 			om = nbGene,
 			hpMax = nbGene * data.hpPerOm,
 			hpCur = nbGene * data.hpPerOm,
@@ -79,7 +85,7 @@ public class Organism : MonoBehaviour
 	public void Clear() // (delete all skills and unbind abilities)
 	{
 		dna = null;
-		stats = new Stats();
+		Stats = new Stats();
 
 		foreach (var passive in passives)
 		{
@@ -122,8 +128,43 @@ public class Organism : MonoBehaviour
 		}
 	}
 
+	#endregion
 
-	// Debug
+	#region Behavior, Gameplay
+
+	public void ApplyStatsModif(StatsModifier _modif)
+	{
+		Stats += _modif;
+	}
+
+	public void DotUpdate()
+	{
+		ApplyStatsModif(new StatsModifier() { hpCur = -Time.deltaTime * Stats.Dot });
+
+		Debug.Log("hp : " + Stats.HpCur.ToString());
+	}
+
+	public void DeathUpdate()
+	{
+		if (Stats.HpCur < 0 )
+		{
+			Die();
+		}
+	}
+
+	private void Die()
+	{
+		// dying behavior code
+
+		Debug.Log(gameObject.name + "died.");
+
+		this.Destroy();
+	}
+
+	#endregion
+	
+	#region Debug
+
 	void Funk1()
 	{
 		Debug.Log("Funk 1");
@@ -132,4 +173,6 @@ public class Organism : MonoBehaviour
 	{
 		Debug.Log("Funk 2");
 	}
+
+	#endregion
 }

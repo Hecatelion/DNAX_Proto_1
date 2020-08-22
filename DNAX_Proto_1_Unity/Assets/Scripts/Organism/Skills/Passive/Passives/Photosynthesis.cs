@@ -31,7 +31,9 @@ public class Photosynthesis : Passive
 	{
 		base.Activate();
 
-		Debug.Log("Ability : \"Photosyntesis\" activation."); // TODO :  heal code, implying StatModifier
+		organism.ApplyStatsModif(new StatsModifier() { hpCur = healPerSecond });
+
+		Debug.Log("Ability : \"Photosyntesis\" activation.");
 	}
 
 	protected override void Deactivate()
