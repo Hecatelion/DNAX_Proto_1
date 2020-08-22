@@ -29,6 +29,6 @@ public class Ability : Skill, IBindable
 
 	public virtual void RequestAction()
 	{
-		Debug.Log(type + " requested.");
+
 	}
 }

@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class TempOragnismBuilder : MonoBehaviour
 {
+	[SerializeField] GameObject organismPrefab;
+	
 	GameObject organismGO;
 	DNA dna1;
 	DNA dna2;
@@ -13,7 +15,7 @@ public class TempOragnismBuilder : MonoBehaviour
 		dna1 = new DNA(new List<e_GeneType> { e_GeneType.Photosynthesis, e_GeneType.None, e_GeneType.None });
 		dna2 = new DNA(new List<e_GeneType> { e_GeneType.Heal });
 
-		organismGO = Organism.InstantiateNewOrganism(dna1);
+		organismGO = InstantiateNewOrganism(dna1);
     }
 
 	private void Update()
@@ -31,7 +33,17 @@ public class TempOragnismBuilder : MonoBehaviour
 
 		if (Input.GetKeyDown(KeyCode.Return))
 		{
-			organismGO = Organism.InstantiateNewOrganism(dna1);
+			organismGO = InstantiateNewOrganism(dna1);
 		}
+	}
+
+	// factory
+	public GameObject InstantiateNewOrganism(DNA _dna)
+	{
+		GameObject newOrganism = Instantiate(organismPrefab, Vector3.zero, Quaternion.identity);
+		newOrganism.name = "New Organism";
+		newOrganism.GetComponent<Organism>().Init(_dna);
+
+		return newOrganism;
 	}
 }

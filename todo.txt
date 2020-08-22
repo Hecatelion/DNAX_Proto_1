@@ -7,20 +7,11 @@ cur step :
  - moving
 
 next tasks: 
- 
- - create Passive : Photosynthesis
- - create Ability : Heal
- - input system (w/ bind)
- - make CustomInputs Scriptable Objects (or Serializable + Script Editor but not found of this idea)
- - make Ability : IBindable
- - create real Organism prefab
- - put a Stats variable in Organism
- - make Organism get stats, abilities & passives from DNA
 
- - try deletion and recreation
-
+ - create an Organism prefab which will be instiated by Builder ('stead of new GO + addComponent)
+ - use a scriptable object Organism Data (hp per om, dot per om, speed, etc.) to help balancing 
  - do a generic singleton class
- - use a scriptable object Organism Data (hp per om, dot per om, speed, etc.) to help balancing
+
  - implement Heal & Photosynthesis gameplay logic for real
  - (?) Condition & Behavior Scripting
  - dot

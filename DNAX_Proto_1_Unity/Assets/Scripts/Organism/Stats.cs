@@ -19,19 +19,6 @@ public class Stats
 		movementSpeed = 0;
 	}
 
-	public static Stats GetStatsFromDNA(DNA _dna)
-	{
-		int nbGene = _dna.Genes.Count;
-
-		return new Stats	{
-			om = nbGene,
-			hpMax = nbGene * 10,
-			hpCur = nbGene * 10,
-			dot = nbGene,
-			movementSpeed = 0
-		};
-	}
-
 	public static Stats operator+(Stats _stats, StatsModifier _modifier)
 	{
 		Stats result = new Stats();
