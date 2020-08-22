@@ -37,16 +37,6 @@ public class TheCustomInputManager : MonoBehaviour
 		}
 	}
 
-	private void instance_Bind(Callback _funk, e_CommandType _type)
-	{
-		instance_GetInputOfType(_type).onInput += _funk;
-	}
-
-	private void instance_Bind(IBindable _bindable, e_CommandType _type)
-	{
-		instance_Bind(_bindable.RequestAction, _type);
-	}
-
 	private CustomInput instance_GetInputOfType(e_CommandType _type)
 	{
 		List<CustomInput> correspondingOnes = (from customInput in customInputs where customInput.data.Type == _type select customInput).ToList();
@@ -67,6 +57,26 @@ public class TheCustomInputManager : MonoBehaviour
 		return correspondingOnes[0];
 	}
 
+	private void instance_Bind(Callback _funk, e_CommandType _type)
+	{
+		instance_GetInputOfType(_type).onInput += _funk;
+	}
+
+	private void instance_Bind(IBindable _bindable, e_CommandType _type)
+	{
+		instance_Bind(_bindable.RequestAction, _type);
+	}
+
+	private void instance_Unbind(Callback _funk, e_CommandType _type)
+	{
+		instance_GetInputOfType(_type).onInput -= _funk;
+	}
+
+	private void instance_Unbind(IBindable _bindable, e_CommandType _type)
+	{
+		instance_Unbind(_bindable.RequestAction, _type);
+	}
+
 	// --------------------------------
 	// Singleton static functions
 
@@ -78,5 +88,15 @@ public class TheCustomInputManager : MonoBehaviour
 	public static void Bind(IBindable _bindable, e_CommandType _type)
 	{
 		instance.instance_Bind(_bindable, _type);
+	}
+
+	public static void Unbind(Callback _func, e_CommandType _type)
+	{
+		instance.instance_Unbind(_func, _type);
+	}
+
+	public static void Unbind(IBindable _bindable, e_CommandType _type)
+	{
+		instance.instance_Unbind(_bindable, _type);
 	}
 }

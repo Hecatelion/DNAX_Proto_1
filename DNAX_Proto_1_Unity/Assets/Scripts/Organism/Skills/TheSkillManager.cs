@@ -13,7 +13,7 @@ public class TheSkillManager : MonoBehaviour
 
 	void Start()
     {
-        if (instance == null)
+		if (instance == null)
 		{
 			instance = this;
 		}
@@ -44,11 +44,11 @@ public class TheSkillManager : MonoBehaviour
 		return passiveCreated;
 	}
 
-	private GameObject instance_InstantiateAbility(e_AbilityType _ability, Organism _org) // var Context + Input
+	private GameObject instance_InstantiateAbility(e_AbilityType _ability, Organism _org) // var Context ?
 	{
-		GameObject abilityPrefab = (from prefab in abilityPrefabs where prefab.GetComponent<Ability>().Type == _ability select prefab).ToList()[0];
+		List<GameObject> correspondingPrefabs = (from prefab in abilityPrefabs where prefab.GetComponent<Ability>().Type == _ability select prefab).ToList();
 
-		if (!abilityPrefab)
+		if (correspondingPrefabs.Count < 1)
 		{
 			Debug.LogError("Ability Type : \"" + _ability.ToString() + "\" not found in TheSkillManager.\n" +
 			"Please ensure present is referenced in the List");
@@ -56,9 +56,10 @@ public class TheSkillManager : MonoBehaviour
 			return null;
 		}
 
+		GameObject abilityPrefab = correspondingPrefabs[0];
+
 		GameObject abilityCreated = Instantiate(abilityPrefab, this.transform);
 		abilityCreated.GetComponent<Skill>().Init(_org);
-		_ = 0; // must bind it to input manager
 
 		return abilityCreated;
 	}
@@ -68,11 +69,21 @@ public class TheSkillManager : MonoBehaviour
 
 	public static GameObject InstantiateAbility(e_AbilityType _ability, Organism _org)
 	{
+		CheckInstance();
 		return instance.instance_InstantiateAbility(_ability, _org);
 	}
 
 	public static GameObject InstantiatePassive(e_PassiveType _passive, Organism _org)
 	{
+		CheckInstance();
 		return instance.instance_InstantiatePassive(_passive, _org);
+	}
+
+	private static void CheckInstance()
+	{
+		if (!instance)
+		{
+			Debug.LogError("no instance for this singleton yet");
+		}
 	}
 }

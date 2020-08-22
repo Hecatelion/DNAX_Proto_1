@@ -10,7 +10,16 @@ public class StatsModifier
 	public float dot;
 	public float movementSpeed;
 
-	public static StatsModifier operator +(StatsModifier _modif1, StatsModifier _modif2)
+	public StatsModifier()
+	{
+		om = 0;
+		hpMax = 0;
+		hpCur = 0;
+		dot = 0;
+		movementSpeed = 0;
+	}
+
+	public static StatsModifier operator+(StatsModifier _modif1, StatsModifier _modif2)
 	{
 		return new StatsModifier {		
 			om = _modif1.om + _modif2.om,

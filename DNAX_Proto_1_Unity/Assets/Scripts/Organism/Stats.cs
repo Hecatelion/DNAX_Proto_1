@@ -5,12 +5,34 @@ using UnityEngine;
 public class Stats
 {
 	private int om;
-	private float hpMax; 
+	private float hpMax;
 	private float hpCur; // timer
 	private float dot;
 	private float movementSpeed;
 
-	public static Stats operator+ (Stats _stats, StatsModifier _modifier)
+	public Stats()
+	{
+		om = 0;
+		hpMax = 0;
+		hpCur = 0;
+		dot = 0;
+		movementSpeed = 0;
+	}
+
+	public static Stats GetStatsFromDNA(DNA _dna)
+	{
+		int nbGene = _dna.Genes.Count;
+
+		return new Stats	{
+			om = nbGene,
+			hpMax = nbGene * 10,
+			hpCur = nbGene * 10,
+			dot = nbGene,
+			movementSpeed = 0
+		};
+	}
+
+	public static Stats operator+(Stats _stats, StatsModifier _modifier)
 	{
 		Stats result = new Stats();
 
@@ -24,5 +46,17 @@ public class Stats
 		result.movementSpeed = _stats.movementSpeed + _modifier.movementSpeed;
 
 		return result;
+	}
+
+	// -----------------------------
+	// Debug Methods
+
+	public void Log()
+	{
+		string str = "Stats : om(" + om + ") hpMax(" + hpMax + ") hpCur(" + hpCur + ") dot(" + dot + ") speed(" + movementSpeed + ")";
+
+		
+
+		Debug.Log(str);
 	}
 }

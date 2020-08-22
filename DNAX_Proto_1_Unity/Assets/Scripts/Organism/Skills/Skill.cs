@@ -14,6 +14,11 @@ public abstract class Skill: MonoBehaviour
 		organism = _org;
 	}
 
+	public void Destroy()
+	{
+		Destroy(gameObject);
+	}
+
 	protected virtual void Start()
 	{ }
 

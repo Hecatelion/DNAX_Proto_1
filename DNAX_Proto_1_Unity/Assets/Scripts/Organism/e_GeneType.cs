@@ -7,5 +7,6 @@ public enum e_GeneType
 	None = -1,
 	Photosynthesis,
 	Spikes,
+	Heal,
 	Count
 }

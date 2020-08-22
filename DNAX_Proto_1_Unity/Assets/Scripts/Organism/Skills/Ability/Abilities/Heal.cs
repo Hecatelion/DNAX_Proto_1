@@ -14,7 +14,6 @@ public class Heal : Ability
 		base.Start();
 
 		isInCooldown = false;
-		Debug.Log("Ability : \"Heal\" Start().");
 	}
 
 	protected override void Update()

@@ -9,13 +9,9 @@ public class Organism : MonoBehaviour
 	private List<Ability> abilities;
 	private Stats stats;
 
-	private void Init(DNA _dna)
-	{
-		dna = _dna;
-	}
-
 	void Start()
     {
+		/*
 		passives = new List<Passive>();
 		abilities = new List<Ability>();
 
@@ -24,18 +20,113 @@ public class Organism : MonoBehaviour
 		abilities.Add(TheSkillManager.InstantiateAbility(e_AbilityType.Heal, this).GetComponent<Ability>());
 
 		TheCustomInputManager.Bind(abilities[0], e_CommandType.Ability0);
-		//TheCustomInputManager.Bind(Funk1, e_CommandType.Ability1);
-		//TheCustomInputManager.Bind(Funk2, e_CommandType.Ability5);
+		TheCustomInputManager.Bind(Funk1, e_CommandType.Ability1);
+		TheCustomInputManager.Bind(Funk2, e_CommandType.Ability5);
+		*/
 	}
 
 	void Update()
 	{
-		if (Input.GetKeyDown(KeyCode.Space))
+		if (Input.GetKeyDown(KeyCode.KeypadEnter))
 		{
 			dna.Log();
+			stats.Log();
 		}
 	}
 
+	public void Init(DNA _dna)
+	{
+		dna = _dna;
+
+		stats = Stats.GetStatsFromDNA(_dna);
+		stats += new StatsModifier() { movementSpeed = 5 };
+
+		passives = GetPassivesFromDNA();
+		abilities = GetAbilitiesFromDNA();
+		BindAbilities();
+	}
+
+	private List<Passive> GetPassivesFromDNA()
+	{
+		List<Passive> passives = new List<Passive>();
+
+		foreach (e_GeneType gene in dna.Genes)
+		{
+			switch (gene)
+			{
+				case e_GeneType.Photosynthesis:
+					passives.Add(TheSkillManager.InstantiatePassive(e_PassiveType.Photosynthesis, this).GetComponent<Passive>()); 
+					break;
+			}
+		}
+
+		return passives;
+	}
+
+	private List<Ability> GetAbilitiesFromDNA()
+	{
+		List<Ability> abilities = new List<Ability>();
+
+		foreach (e_GeneType gene in dna.Genes)
+		{
+			switch (gene)
+			{
+				case e_GeneType.Heal:
+					abilities.Add(TheSkillManager.InstantiateAbility(e_AbilityType.Heal, this).GetComponent<Ability>());
+					break;
+			}
+		}
+
+		return abilities;
+	}
+
+	public void Clear() // (delete all skills and unbind abilities)
+	{
+		dna = null;
+		stats = new Stats();
+
+		foreach (var passive in passives)
+		{
+			passive.Destroy();
+		}
+		passives = null;
+
+		UnbindAbilities();
+		foreach (var ability in abilities)
+		{
+			ability.Destroy();
+		}
+		abilities = null;
+	}
+
+	public void Destroy()
+	{
+		Clear();
+		Destroy(gameObject);
+		// make all refs = null (in OrganismBuilder for example)
+	}
+
+	private void BindAbilities()
+	{
+		int abilityIndex = (int)e_CommandType.Ability1;
+
+		for (int i = 0; i < abilities.Count; ++i)
+		{
+			TheCustomInputManager.Bind(abilities[i], (e_CommandType)(abilityIndex + i));
+		}
+	}
+
+	private void UnbindAbilities()
+	{
+		int abilityIndex = (int)e_CommandType.Ability1;
+
+		for (int i = 0; i < abilities.Count; ++i)
+		{
+			TheCustomInputManager.Unbind(abilities[i], (e_CommandType)(abilityIndex + i));
+		}
+	}
+
+	// factory
 	public static GameObject InstantiateNewOrganism(DNA _dna)
 	{
 		GameObject go = new GameObject("New Organism");
@@ -47,6 +138,8 @@ public class Organism : MonoBehaviour
 		return go;
 	}
 
+
+	// Debug
 	void Funk1()
 	{
 		Debug.Log("Funk 1");

@@ -12,8 +12,6 @@ public class Photosynthesis : Passive
 	protected override void Start()
 	{
 		base.Start();
-
-		Debug.Log("Passive : \"Photosynthesis\" Start().");
 	}
 
 	protected override void Update()

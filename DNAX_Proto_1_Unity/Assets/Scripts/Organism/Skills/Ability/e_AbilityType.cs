@@ -6,6 +6,6 @@ public enum e_AbilityType
 {
 	None = -1,
 	Spikes,
-	Count,
-	Heal
+	Heal,
+	Count
 }
