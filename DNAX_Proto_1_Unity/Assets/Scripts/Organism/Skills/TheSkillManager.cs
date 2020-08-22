@@ -4,24 +4,13 @@ using UnityEngine;
 using System.Linq;
 
 // Singleton & Factory
-public class TheSkillManager : MonoBehaviour
+public class TheSkillManager : Singleton<TheSkillManager>
 {
-	private static TheSkillManager instance;
-
 	[SerializeField] List<GameObject> passivePrefabs;
 	[SerializeField] List<GameObject> abilityPrefabs;
 
 	void Start()
-    {
-		if (instance == null)
-		{
-			instance = this;
-		}
-		else
-		{
-			Destroy(this.gameObject);
-		}
-    }
+    { }
 
     void Update()
     { }
@@ -69,21 +58,11 @@ public class TheSkillManager : MonoBehaviour
 
 	public static GameObject InstantiateAbility(e_AbilityType _ability, Organism _org)
 	{
-		CheckInstance();
-		return instance.instance_InstantiateAbility(_ability, _org);
+		return Instance.instance_InstantiateAbility(_ability, _org);
 	}
 
 	public static GameObject InstantiatePassive(e_PassiveType _passive, Organism _org)
 	{
-		CheckInstance();
-		return instance.instance_InstantiatePassive(_passive, _org);
-	}
-
-	private static void CheckInstance()
-	{
-		if (!instance)
-		{
-			Debug.LogError("no instance for this singleton yet");
-		}
+		return Instance.instance_InstantiatePassive(_passive, _org);
 	}
 }

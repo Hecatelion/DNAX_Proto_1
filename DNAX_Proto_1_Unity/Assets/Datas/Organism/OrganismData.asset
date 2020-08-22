@@ -12,6 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e36320aa1b9ac4c4c982a544781a782c, type: 3}
   m_Name: OrganismData
   m_EditorClassIdentifier: 
-  hpPerOm: 5
+  hpPerOm: 10
   dotPerOm: 1
-  movementSpeed: 6
+  movementSpeed: 5

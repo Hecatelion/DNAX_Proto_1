@@ -4,28 +4,17 @@ using UnityEngine;
 using System.Linq;
 
 // Singleton 
-public class TheCustomInputManager : MonoBehaviour
+public class TheCustomInputManager : Singleton<TheCustomInputManager>
 {
-	private static TheCustomInputManager instance;
-
 	[SerializeField] private List<CustomInputData> customInputDatas = new List<CustomInputData>();
 	public List<CustomInput> customInputs; // make it prvt
 
 	void Start()
 	{
-		if (instance == null)
+		customInputs = new List<CustomInput>();
+		foreach (var data in customInputDatas)
 		{
-			instance = this;
-
-			customInputs = new List<CustomInput>();
-			foreach (var data in customInputDatas)
-			{
-				customInputs.Add(new CustomInput(data));
-			}
-		}
-		else
-		{
-			Destroy(this.gameObject);
+			customInputs.Add(new CustomInput(data));
 		}
 	}
 
@@ -82,21 +71,21 @@ public class TheCustomInputManager : MonoBehaviour
 
 	public static void Bind(Callback _func, e_CommandType _type)
 	{
-		instance.instance_Bind(_func, _type);
+		Instance.instance_Bind(_func, _type);
 	}
 
 	public static void Bind(IBindable _bindable, e_CommandType _type)
 	{
-		instance.instance_Bind(_bindable, _type);
+		Instance.instance_Bind(_bindable, _type);
 	}
 
 	public static void Unbind(Callback _func, e_CommandType _type)
 	{
-		instance.instance_Unbind(_func, _type);
+		Instance.instance_Unbind(_func, _type);
 	}
 
 	public static void Unbind(IBindable _bindable, e_CommandType _type)
 	{
-		instance.instance_Unbind(_bindable, _type);
+		Instance.instance_Unbind(_bindable, _type);
 	}
 }

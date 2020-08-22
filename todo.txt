@@ -8,8 +8,6 @@ cur step :
 
 next tasks: 
 
- - create an Organism prefab which will be instiated by Builder ('stead of new GO + addComponent)
- - use a scriptable object Organism Data (hp per om, dot per om, speed, etc.) to help balancing 
  - do a generic singleton class
 
  - implement Heal & Photosynthesis gameplay logic for real
