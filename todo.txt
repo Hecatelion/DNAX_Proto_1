@@ -8,11 +8,8 @@ cur step :
 
 next tasks: 
 
- - make dot a passive
- - fixed an issue in Stats properties
- - make an antidote passive
+ - add death Callbacks
 
- - add passives, abilities, death Callbacks
  - physical object (model + collider, as children)
  - make him walk
  - put visual effect on organism (appart from logic code)

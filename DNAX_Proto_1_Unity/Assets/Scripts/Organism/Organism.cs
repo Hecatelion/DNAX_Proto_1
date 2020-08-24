@@ -7,10 +7,13 @@ public class Organism : MonoBehaviour
 	[SerializeField] private OrganismData data;
 
 	private DNA dna;
+	private Stats stats;
 	private List<Passive> passives;
 	private List<Ability> abilities;
 
-	public Stats Stats { get; private set; }
+	public Stats Stats { get => this.stats; }
+
+	public Callback onDeath = () => { };
 
 	void Start()
     { }
@@ -39,7 +42,7 @@ public class Organism : MonoBehaviour
 
 		int nbGene = this.dna.Genes.Count;
 
-		this.Stats = new Stats() + new StatsModifier() {
+		this.stats = new Stats() + new StatsModifier() {
 			om = nbGene,
 			hpMax = nbGene * this.data.hpPerOm,
 			hpCur = nbGene * this.data.hpPerOm,
@@ -95,7 +98,7 @@ public class Organism : MonoBehaviour
 	public void Clear() // (delete all skills and unbind abilities)
 	{
 		this.dna = null;
-		this.Stats = new Stats();
+		this.stats = new Stats();
 
 		foreach (var passive in this.passives)
 		{
@@ -144,7 +147,7 @@ public class Organism : MonoBehaviour
 
 	public void ApplyStatsModif(StatsModifier _modif)
 	{
-		this.Stats += _modif;
+		this.stats += _modif;
 	}
 
 	public void DeathUpdate()
@@ -157,8 +160,9 @@ public class Organism : MonoBehaviour
 
 	private void Die()
 	{
-		// dying behavior code
+		this.onDeath();
 
+		// dying behavior code
 		Debug.Log(this.gameObject.name + " died.");
 
 		this.Destroy();
