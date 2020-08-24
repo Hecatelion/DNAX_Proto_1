@@ -5,6 +5,8 @@ using UnityEngine;
 public enum e_PassiveType
 {
 	None = -1,
+	Dot,
 	Photosynthesis,
+	AntiDot,
 	Count
 }

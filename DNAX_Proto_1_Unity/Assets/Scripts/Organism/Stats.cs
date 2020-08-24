@@ -10,11 +10,11 @@ public class Stats
 	private float dot;
 	private float movementSpeed;
 
-	public int Om { get; }
-	public float HpMax { get; }
-	public float HpCur { get; } // timer
-	public float Dot { get; }
-	public float MovementSpeed { get; }
+	public int Om { get => this.om; }
+	public float HpMax { get => this.hpMax; }
+	public float HpCur { get => this.hpCur; } // timer
+	public float Dot { get => this.dot; }
+	public float MovementSpeed { get => this.movementSpeed; }
 
 	public Stats()
 	{

@@ -8,5 +8,6 @@ public enum e_GeneType
 	Photosynthesis,
 	Spikes,
 	Heal,
+	AntiDot,
 	Count
 }

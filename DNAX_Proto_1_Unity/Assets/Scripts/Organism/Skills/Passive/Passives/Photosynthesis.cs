@@ -5,7 +5,8 @@ using UnityEngine;
 public class Photosynthesis : Passive
 {
 	[SerializeField] int healPerSecond;
-	[SerializeField] float frequency;
+	[Tooltip("the delay between two tick of heal (0 -> each frame)")]
+	[SerializeField] float delayInSecond;
 
 	float t;
 
@@ -18,12 +19,19 @@ public class Photosynthesis : Passive
 	{
 		base.Update();
 
-		this.t += Time.deltaTime;
-		if (this.t > this.frequency)
+		if (this.delayInSecond == 0)
 		{
-			this.t -= this.frequency;
-
 			Activate();
+		}
+		else
+		{
+			this.t += Time.deltaTime;
+			if (this.t > this.delayInSecond)
+			{
+				this.t -= this.delayInSecond;
+
+				Activate();
+			}
 		}
 	}
 
@@ -31,9 +39,10 @@ public class Photosynthesis : Passive
 	{
 		base.Activate();
 
-		this.organism.ApplyStatsModif(new StatsModifier() { hpCur = healPerSecond });
+		float healAmount = (this.delayInSecond == 0) ? this.healPerSecond * Time.deltaTime : this.healPerSecond * this.delayInSecond;
+		this.organism.ApplyStatsModif(new StatsModifier() { hpCur = healAmount });
 
-		Debug.Log("Ability : \"Photosyntesis\" activation.");
+		Debug.Log("Passive : \"Photosyntesis\" activation. hp : " + this.organism.Stats.HpCur);
 	}
 
 	protected override void Deactivate()

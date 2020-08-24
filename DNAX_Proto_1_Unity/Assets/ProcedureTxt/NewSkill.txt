@@ -1,0 +1,9 @@
+// procedure described for new Ability
+// same procedure for new Passive
+
+1) Add value to enums e_GeneType and e_AbilityType
+2) Create a script from NewAbilityModel.cs
+3) Code gameplay logic of it
+4) Create a prefab w/ script attached (set the e_AbilityType field correctly)
+5) Reference prefab in TheSkillManager
+6) Add switch case in Organism.GetAbilitiesFromDna() 

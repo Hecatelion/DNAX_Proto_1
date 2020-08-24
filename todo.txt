@@ -8,11 +8,11 @@ cur step :
 
 next tasks: 
 
- - force this.field and this.property
- - Stats put back fields and properties
+ - make dot a passive
+ - fixed an issue in Stats properties
+ - make an antidote passive
 
- - make dot a passive ? 
- - add dot and death Callbacks
+ - add passives, abilities, death Callbacks
  - physical object (model + collider, as children)
  - make him walk
  - put visual effect on organism (appart from logic code)

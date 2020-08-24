@@ -9,13 +9,15 @@ public class TempOragnismBuilder : MonoBehaviour
 	GameObject organismGO;
 	DNA dna1;
 	DNA dna2;
+	DNA dna3;
 
     void Start()
     {
-		this.dna1 = new DNA(new List<e_GeneType> { e_GeneType.Photosynthesis, e_GeneType.None, e_GeneType.None });
+		this.dna1 = new DNA(new List<e_GeneType> { e_GeneType.Photosynthesis, e_GeneType.None, e_GeneType.None, e_GeneType.None });
 		this.dna2 = new DNA(new List<e_GeneType> { e_GeneType.Heal, e_GeneType.None });
+		this.dna3 = new DNA(new List<e_GeneType> { e_GeneType.AntiDot, e_GeneType.None, e_GeneType.None });
 
-		this.organismGO = InstantiateNewOrganism(this.dna1);
+		this.organismGO = InstantiateNewOrganism(this.dna3);
     }
 
 	private void Update()

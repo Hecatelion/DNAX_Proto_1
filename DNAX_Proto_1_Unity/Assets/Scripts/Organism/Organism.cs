@@ -17,13 +17,17 @@ public class Organism : MonoBehaviour
 
 	void Update()
 	{
+		// debug
+		if (Input.GetKeyDown(KeyCode.KeypadMinus))
+		{
+			ApplyStatsModif(new StatsModifier() { hpCur = -10 });
+		}
 		if (Input.GetKeyDown(KeyCode.KeypadEnter))
 		{
 			this.dna.Log();
 			this.Stats.Log();
 		}
 
-		DotUpdate();
 		DeathUpdate();
 	}
 
@@ -52,12 +56,18 @@ public class Organism : MonoBehaviour
 	{
 		List<Passive> passives = new List<Passive>();
 
+		passives.Add(TheSkillManager.InstantiatePassive(e_PassiveType.Dot, this).GetComponent<Passive>());
+
 		foreach (e_GeneType gene in this.dna.Genes)
 		{
 			switch (gene)
 			{
 				case e_GeneType.Photosynthesis:
 					passives.Add(TheSkillManager.InstantiatePassive(e_PassiveType.Photosynthesis, this).GetComponent<Passive>()); 
+					break;
+
+				case e_GeneType.AntiDot:
+					passives.Add(TheSkillManager.InstantiatePassive(e_PassiveType.AntiDot, this).GetComponent<Passive>()); 
 					break;
 			}
 		}
@@ -137,13 +147,6 @@ public class Organism : MonoBehaviour
 		this.Stats += _modif;
 	}
 
-	public void DotUpdate()
-	{
-		ApplyStatsModif(new StatsModifier() { hpCur = -Time.deltaTime * this.Stats.Dot });
-
-		Debug.Log("hp : " + this.Stats.HpCur.ToString());
-	}
-
 	public void DeathUpdate()
 	{
 		if (this.Stats.HpCur < 0 )
@@ -156,7 +159,7 @@ public class Organism : MonoBehaviour
 	{
 		// dying behavior code
 
-		Debug.Log(this.gameObject.name + "died.");
+		Debug.Log(this.gameObject.name + " died.");
 
 		this.Destroy();
 	}
