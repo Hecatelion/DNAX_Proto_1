@@ -42,7 +42,7 @@ public class TempOragnismBuilder : MonoBehaviour
 	// factory
 	public GameObject InstantiateNewOrganism(DNA _dna)
 	{
-		GameObject newOrganism = Instantiate(this.organismPrefab, Vector3.zero, Quaternion.identity);
+		GameObject newOrganism = Instantiate(this.organismPrefab, Vector3.up * 0.5f, Quaternion.identity);
 		newOrganism.name = "New Organism";
 		newOrganism.GetComponent<Organism>().Init(_dna);
 

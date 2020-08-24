@@ -21,8 +21,6 @@ public class Dot : Passive
 		base.Activate();
 
 		this.organism.ApplyStatsModif(new StatsModifier() { hpCur = -Time.deltaTime * this.organism.Stats.Dot });
-		
-		Debug.Log("Dot! hp : " + this.organism.Stats.HpCur);
 	}
 
 	protected override void Deactivate()

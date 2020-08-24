@@ -8,8 +8,11 @@ cur step :
 
 next tasks: 
 
- - add death Callbacks
-
  - physical object (model + collider, as children)
- - make him walk
+ - make him walk (+ orientation)
+
  - put visual effect on organism (appart from logic code)
+	-> Ability.onActivation()
+	-> Organism.onDeath()
+ - shade the organism model according to dna (size, colors, etc.)
+ - Camera management

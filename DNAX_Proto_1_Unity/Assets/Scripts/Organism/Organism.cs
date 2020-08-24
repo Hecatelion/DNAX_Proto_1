@@ -11,12 +11,16 @@ public class Organism : MonoBehaviour
 	private List<Passive> passives;
 	private List<Ability> abilities;
 
-	public Stats Stats { get => this.stats; }
-
 	public Callback onDeath = () => { };
 
+	private new Rigidbody rigidbody;
+
+	public Stats Stats { get => this.stats; }
+
 	void Start()
-    { }
+    {
+		this.rigidbody = GetComponent<Rigidbody>();
+	}
 
 	void Update()
 	{
@@ -31,6 +35,7 @@ public class Organism : MonoBehaviour
 			this.Stats.Log();
 		}
 
+		MovementUpdate();
 		DeathUpdate();
 	}
 
@@ -145,12 +150,29 @@ public class Organism : MonoBehaviour
 
 	#region Behavior, Gameplay
 
+	private void MovementUpdate()
+	{
+		float horizontal = Input.GetAxisRaw("Horizontal");
+		float vertical = Input.GetAxisRaw("Vertical");
+
+		if (horizontal != 0 || vertical != 0)
+		{
+			this.transform.forward = new Vector3(horizontal, 0, vertical);
+
+			this.rigidbody.velocity = this.transform.forward * this.Stats.MovementSpeed;
+		}
+		else
+		{
+			this.rigidbody.velocity = Vector3.zero;
+		}
+	}
+
 	public void ApplyStatsModif(StatsModifier _modif)
 	{
 		this.stats += _modif;
 	}
 
-	public void DeathUpdate()
+	private void DeathUpdate()
 	{
 		if (this.Stats.HpCur < 0 )
 		{
