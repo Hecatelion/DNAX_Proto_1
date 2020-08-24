@@ -12,35 +12,35 @@ public class TempOragnismBuilder : MonoBehaviour
 
     void Start()
     {
-		dna1 = new DNA(new List<e_GeneType> { e_GeneType.Photosynthesis, e_GeneType.None, e_GeneType.None });
-		dna2 = new DNA(new List<e_GeneType> { e_GeneType.Heal, e_GeneType.None });
+		this.dna1 = new DNA(new List<e_GeneType> { e_GeneType.Photosynthesis, e_GeneType.None, e_GeneType.None });
+		this.dna2 = new DNA(new List<e_GeneType> { e_GeneType.Heal, e_GeneType.None });
 
-		organismGO = InstantiateNewOrganism(dna1);
+		this.organismGO = InstantiateNewOrganism(this.dna1);
     }
 
 	private void Update()
 	{
 		if (Input.GetKeyDown(KeyCode.Space))
 		{
-			organismGO.GetComponent<Organism>().Clear();
-			organismGO.GetComponent<Organism>().Init(dna2);
+			this.organismGO.GetComponent<Organism>().Clear();
+			this.organismGO.GetComponent<Organism>().Init(this.dna2);
 		}
 
 		if (Input.GetKeyDown(KeyCode.Backspace))
 		{
-			organismGO.GetComponent<Organism>().Destroy();
+			this.organismGO.GetComponent<Organism>().Destroy();
 		}
 
 		if (Input.GetKeyDown(KeyCode.Return))
 		{
-			organismGO = InstantiateNewOrganism(dna1);
+			this.organismGO = InstantiateNewOrganism(this.dna1);
 		}
 	}
 
 	// factory
 	public GameObject InstantiateNewOrganism(DNA _dna)
 	{
-		GameObject newOrganism = Instantiate(organismPrefab, Vector3.zero, Quaternion.identity);
+		GameObject newOrganism = Instantiate(this.organismPrefab, Vector3.zero, Quaternion.identity);
 		newOrganism.name = "New Organism";
 		newOrganism.GetComponent<Organism>().Init(_dna);
 

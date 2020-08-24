@@ -11,12 +11,12 @@ public abstract class Skill: MonoBehaviour
 
 	public void Init(Organism _org)
 	{
-		organism = _org;
+		this.organism = _org;
 	}
 
 	public void Destroy()
 	{
-		Destroy(gameObject);
+		Destroy(this.gameObject);
 	}
 
 	protected virtual void Start()
@@ -29,13 +29,13 @@ public abstract class Skill: MonoBehaviour
 	// e.g. When a passive procs or when an ability is used
 	protected virtual void Activate() 
 	{
-		onActivation();
+		this.onActivation();
 	}
 
 	// call it to Deactivate the effects of the skill
 	// when a passive or an ability should stop or be cancelled
 	protected virtual void Deactivate()
 	{
-		onDeactivation();
+		this.onDeactivation();
 	}
 }

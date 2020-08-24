@@ -13,21 +13,21 @@ public class Heal : Ability
 	{
 		base.Start();
 
-		isInCooldown = false;
+		this.isInCooldown = false;
 	}
 
 	protected override void Update()
 	{
 		base.Update();
 
-		if (isInCooldown)
+		if (this.isInCooldown)
 		{
-			t += Time.deltaTime;
+			this.t += Time.deltaTime;
 
-			if (t >= cooldown)
+			if (this.t >= this.cooldown)
 			{
-				isInCooldown = false;
-				t = 0;
+				this.isInCooldown = false;
+				this.t = 0;
 			}
 		}
 	}
@@ -36,8 +36,8 @@ public class Heal : Ability
 	{
 		base.Activate();
 
-		organism.ApplyStatsModif(new StatsModifier() { hpCur = heal });
-		isInCooldown = true;
+		this.organism.ApplyStatsModif(new StatsModifier() { hpCur = heal });
+		this.isInCooldown = true;
 
 		Debug.Log("Ability : \"Heal\" Launched.");
 	}
@@ -51,7 +51,7 @@ public class Heal : Ability
 	{
 		base.RequestAction();
 
-		if (!isInCooldown)
+		if (!this.isInCooldown)
 		{
 			Activate();
 		}

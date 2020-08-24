@@ -8,11 +8,11 @@ cur step :
 
 next tasks: 
 
- - implement Heal & Photosynthesis gameplay logic for real
- - auto implemented properties on Stats { public get; private set }
- - dot
- - death 
+ - force this.field and this.property
+ - Stats put back fields and properties
 
- - (?) properties lowerCamelCase rework (to avoid properties named like their type)
+ - make dot a passive ? 
+ - add dot and death Callbacks
+ - physical object (model + collider, as children)
  - make him walk
  - put visual effect on organism (appart from logic code)

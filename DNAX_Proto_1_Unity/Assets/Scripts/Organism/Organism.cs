@@ -19,8 +19,8 @@ public class Organism : MonoBehaviour
 	{
 		if (Input.GetKeyDown(KeyCode.KeypadEnter))
 		{
-			dna.Log();
-			Stats.Log();
+			this.dna.Log();
+			this.Stats.Log();
 		}
 
 		DotUpdate();
@@ -31,20 +31,20 @@ public class Organism : MonoBehaviour
 
 	public void Init(DNA _dna)
 	{
-		dna = _dna;
+		this.dna = _dna;
 
-		int nbGene = dna.Genes.Count;
+		int nbGene = this.dna.Genes.Count;
 
-		Stats = new Stats() + new StatsModifier() {
+		this.Stats = new Stats() + new StatsModifier() {
 			om = nbGene,
-			hpMax = nbGene * data.hpPerOm,
-			hpCur = nbGene * data.hpPerOm,
-			dot = nbGene * data.dotPerOm,
-			movementSpeed = data.movementSpeed
+			hpMax = nbGene * this.data.hpPerOm,
+			hpCur = nbGene * this.data.hpPerOm,
+			dot = nbGene * this.data.dotPerOm,
+			movementSpeed = this.data.movementSpeed
 		};
 
-		passives = GetPassivesFromDNA();
-		abilities = GetAbilitiesFromDNA();
+		this.passives = GetPassivesFromDNA();
+		this.abilities = GetAbilitiesFromDNA();
 		BindAbilities();
 	}
 
@@ -52,7 +52,7 @@ public class Organism : MonoBehaviour
 	{
 		List<Passive> passives = new List<Passive>();
 
-		foreach (e_GeneType gene in dna.Genes)
+		foreach (e_GeneType gene in this.dna.Genes)
 		{
 			switch (gene)
 			{
@@ -69,7 +69,7 @@ public class Organism : MonoBehaviour
 	{
 		List<Ability> abilities = new List<Ability>();
 
-		foreach (e_GeneType gene in dna.Genes)
+		foreach (e_GeneType gene in this.dna.Genes)
 		{
 			switch (gene)
 			{
@@ -84,27 +84,27 @@ public class Organism : MonoBehaviour
 
 	public void Clear() // (delete all skills and unbind abilities)
 	{
-		dna = null;
-		Stats = new Stats();
+		this.dna = null;
+		this.Stats = new Stats();
 
-		foreach (var passive in passives)
+		foreach (var passive in this.passives)
 		{
 			passive.Destroy();
 		}
-		passives = null;
+		this.passives = null;
 
 		UnbindAbilities();
-		foreach (var ability in abilities)
+		foreach (var ability in this.abilities)
 		{
 			ability.Destroy();
 		}
-		abilities = null;
+		this.abilities = null;
 	}
 
 	public void Destroy()
 	{
 		Clear();
-		Destroy(gameObject);
+		Destroy(this.gameObject);
 		// make all refs = null (in OrganismBuilder for example) ?
 	}
 
@@ -112,9 +112,9 @@ public class Organism : MonoBehaviour
 	{
 		int abilityIndex = (int)e_CommandType.Ability1;
 
-		for (int i = 0; i < abilities.Count; ++i)
+		for (int i = 0; i < this.abilities.Count; ++i)
 		{
-			TheCustomInputManager.Bind(abilities[i], (e_CommandType)(abilityIndex + i));
+			TheCustomInputManager.Bind(this.abilities[i], (e_CommandType)(abilityIndex + i));
 		}
 	}
 
@@ -122,9 +122,9 @@ public class Organism : MonoBehaviour
 	{
 		int abilityIndex = (int)e_CommandType.Ability1;
 
-		for (int i = 0; i < abilities.Count; ++i)
+		for (int i = 0; i < this.abilities.Count; ++i)
 		{
-			TheCustomInputManager.Unbind(abilities[i], (e_CommandType)(abilityIndex + i));
+			TheCustomInputManager.Unbind(this.abilities[i], (e_CommandType)(abilityIndex + i));
 		}
 	}
 
@@ -134,19 +134,19 @@ public class Organism : MonoBehaviour
 
 	public void ApplyStatsModif(StatsModifier _modif)
 	{
-		Stats += _modif;
+		this.Stats += _modif;
 	}
 
 	public void DotUpdate()
 	{
-		ApplyStatsModif(new StatsModifier() { hpCur = -Time.deltaTime * Stats.Dot });
+		ApplyStatsModif(new StatsModifier() { hpCur = -Time.deltaTime * this.Stats.Dot });
 
-		Debug.Log("hp : " + Stats.HpCur.ToString());
+		Debug.Log("hp : " + this.Stats.HpCur.ToString());
 	}
 
 	public void DeathUpdate()
 	{
-		if (Stats.HpCur < 0 )
+		if (this.Stats.HpCur < 0 )
 		{
 			Die();
 		}
@@ -156,7 +156,7 @@ public class Organism : MonoBehaviour
 	{
 		// dying behavior code
 
-		Debug.Log(gameObject.name + "died.");
+		Debug.Log(this.gameObject.name + "died.");
 
 		this.Destroy();
 	}

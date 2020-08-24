@@ -17,7 +17,7 @@ public class TheSkillManager : Singleton<TheSkillManager>
 
 	private GameObject instance_InstantiatePassive(e_PassiveType _passive, Organism _org) // var Context ?
 	{
-		GameObject passivePrefab = (from prefab in passivePrefabs where prefab.GetComponent<Passive>().Type == _passive select prefab).ToList()[0];
+		GameObject passivePrefab = (from prefab in this.passivePrefabs where prefab.GetComponent<Passive>().Type == _passive select prefab).ToList()[0];
 
 		if (!passivePrefab)
 		{
@@ -35,7 +35,7 @@ public class TheSkillManager : Singleton<TheSkillManager>
 
 	private GameObject instance_InstantiateAbility(e_AbilityType _ability, Organism _org) // var Context ?
 	{
-		List<GameObject> correspondingPrefabs = (from prefab in abilityPrefabs where prefab.GetComponent<Ability>().Type == _ability select prefab).ToList();
+		List<GameObject> correspondingPrefabs = (from prefab in this.abilityPrefabs where prefab.GetComponent<Ability>().Type == _ability select prefab).ToList();
 
 		if (correspondingPrefabs.Count < 1)
 		{

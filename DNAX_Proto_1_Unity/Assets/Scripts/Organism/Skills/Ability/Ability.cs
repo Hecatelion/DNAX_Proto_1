@@ -5,7 +5,7 @@ using UnityEngine;
 public class Ability : Skill, IBindable
 {
 	[SerializeField] protected e_AbilityType type;
-	public e_AbilityType Type { get => type; }
+	public e_AbilityType Type { get => this.type; }
 
 	protected override void Start()
 	{

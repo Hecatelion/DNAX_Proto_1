@@ -5,7 +5,7 @@ using UnityEngine;
 public class Passive : Skill
 {
 	[SerializeField] protected e_PassiveType type;
-	public e_PassiveType Type { get => type; }
+	public e_PassiveType Type { get => this.type; }
 
 	protected override void Start()
 	{

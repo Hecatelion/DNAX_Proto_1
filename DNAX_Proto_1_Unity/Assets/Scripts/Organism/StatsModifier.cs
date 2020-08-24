@@ -12,11 +12,11 @@ public class StatsModifier
 
 	public StatsModifier()
 	{
-		om = 0;
-		hpMax = 0;
-		hpCur = 0;
-		dot = 0;
-		movementSpeed = 0;
+		this.om = 0;
+		this.hpMax = 0;
+		this.hpCur = 0;
+		this.dot = 0;
+		this.movementSpeed = 0;
 	}
 
 	public static StatsModifier operator+(StatsModifier _modif1, StatsModifier _modif2)

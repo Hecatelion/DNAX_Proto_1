@@ -5,11 +5,11 @@ using UnityEngine;
 public class DNA
 {
 	private List<e_GeneType> genes;
-	public List<e_GeneType> Genes { get => genes; }
+	public List<e_GeneType> Genes { get => this.genes; }
 
 	public DNA(List<e_GeneType> _genes = null)
 	{
-		genes = _genes ?? new List<e_GeneType>();
+		this.genes = _genes ?? new List<e_GeneType>();
 	}
 
 
@@ -21,7 +21,7 @@ public class DNA
 	{
 		string str = "DNA :";
 
-		foreach (var gene in Genes)
+		foreach (var gene in this.Genes)
 		{
 			str += " • " + gene.ToString();
 		}

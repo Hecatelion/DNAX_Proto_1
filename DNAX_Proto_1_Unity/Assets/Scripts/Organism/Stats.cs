@@ -4,33 +4,39 @@ using UnityEngine;
 
 public class Stats
 {
-	public int Om { get; private set; }
-	public float HpMax { get; private set; }
-	public float HpCur { get; private set; } // timer
-	public float Dot { get; private set; }
-	public float MovementSpeed { get; private set; }
+	private int om;
+	private float hpMax;
+	private float hpCur;
+	private float dot;
+	private float movementSpeed;
+
+	public int Om { get; }
+	public float HpMax { get; }
+	public float HpCur { get; } // timer
+	public float Dot { get; }
+	public float MovementSpeed { get; }
 
 	public Stats()
 	{
-		Om = 0;
-		HpMax = 0;
-		HpCur = 0;
-		Dot = 0;
-		MovementSpeed = 0;
+		this.om = 0;
+		this.hpMax = 0;
+		this.hpCur = 0;
+		this.dot = 0;
+		this.movementSpeed = 0;
 	}
 
 	public static Stats operator+(Stats _stats, StatsModifier _modifier)
 	{
 		Stats result = new Stats();
 
-		result.Om = _stats.Om + _modifier.om;
+		result.om = _stats.Om + _modifier.om;
 
-		result.HpMax = _stats.HpMax + _modifier.hpMax;
-		result.HpCur = _stats.HpCur + _modifier.hpCur;
-		if (result.HpCur > result.HpMax) result.HpCur = result.HpMax;
+		result.hpMax = _stats.HpMax + _modifier.hpMax;
+		result.hpCur = _stats.HpCur + _modifier.hpCur;
+		if (result.HpCur > result.HpMax) result.hpCur = result.HpMax;
 
-		result.Dot = _stats.Dot + _modifier.dot;
-		result.MovementSpeed = _stats.MovementSpeed + _modifier.movementSpeed;
+		result.dot = _stats.Dot + _modifier.dot;
+		result.movementSpeed = _stats.MovementSpeed + _modifier.movementSpeed;
 
 		return result;
 	}
@@ -40,6 +46,6 @@ public class Stats
 
 	public void Log()
 	{
-		Debug.Log("Stats : Om(" + Om + ") HpMax(" + HpMax + ") HpCur(" + HpCur + ") Dot(" + Dot + ") speed(" + MovementSpeed + ")");
+		Debug.Log("Stats : Om(" + this.Om + ") HpMax(" + this.HpMax + ") HpCur(" + this.HpCur + ") Dot(" + this.Dot + ") speed(" + this.MovementSpeed + ")");
 	}
 }

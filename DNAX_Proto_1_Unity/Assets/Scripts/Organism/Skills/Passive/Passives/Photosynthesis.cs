@@ -18,10 +18,10 @@ public class Photosynthesis : Passive
 	{
 		base.Update();
 
-		t += Time.deltaTime;
-		if (t > frequency)
+		this.t += Time.deltaTime;
+		if (this.t > this.frequency)
 		{
-			t -= frequency;
+			this.t -= this.frequency;
 
 			Activate();
 		}
@@ -31,7 +31,7 @@ public class Photosynthesis : Passive
 	{
 		base.Activate();
 
-		organism.ApplyStatsModif(new StatsModifier() { hpCur = healPerSecond });
+		this.organism.ApplyStatsModif(new StatsModifier() { hpCur = healPerSecond });
 
 		Debug.Log("Ability : \"Photosyntesis\" activation.");
 	}
