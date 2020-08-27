@@ -1,18 +1,24 @@
 cur step :
 
-• raw organism
- - class w/ data architecture
- - ability 1 : smthg
- - passive 1 : smthg
- - moving
-
 next tasks: 
 
- - physical object (model + collider, as children)
- - make him walk (+ orientation)
-
+ - CascadingAnimator, OrganismCascadingAnimator, e_AnimationType
+ 
+ - corresponding prefabs : 
+	+ test Propagate() func all cases
+	+ test error messages (play & cancel)
+	+ test Animation (play & cancel) 
+		+ Animation 1 : classical unity animator stuff
+		+ Animation 2 : code executing an anim (e.g. color shading w/ in code) 
+				(corroutines possible?)
+		+ Animation 3 : subModel.setActive(true/false) (+ play anim?)
+	+ test 2 different layers
+	+ submodel instantiation/SetActive(true/false)
  - put visual effect on organism (appart from logic code)
+	-> Passive.onActivation()
 	-> Ability.onActivation()
 	-> Organism.onDeath()
  - shade the organism model according to dna (size, colors, etc.)
+ - model anchor system ? (to place automatically sub-models on their parent 
+	depending on which spots are free, to avoid sub-model overlapping)
  - Camera management
