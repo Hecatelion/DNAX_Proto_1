@@ -7,9 +7,9 @@ public abstract class CascadingAnimator : MonoBehaviour
 {
 	[SerializeField] protected List<e_AnimationType> animationTypes;
 
-	protected e_AnimationType curAnim;
+	/*protected*/ public e_AnimationType curAnim;
 	protected Animator animator;
-	protected List<CascadingAnimator> childrenCascadingAnimators;
+	/*protected*/ public List<CascadingAnimator> childrenCascadingAnimators;
 
 	protected virtual void Start()
 	{
@@ -17,7 +17,11 @@ public abstract class CascadingAnimator : MonoBehaviour
 
 		this.curAnim = e_AnimationType.None;
 		this.animator = GetComponent<Animator>();
+		/*
 		this.childrenCascadingAnimators = GetComponentsInChildren<CascadingAnimator>().ToList();
+		this.childrenCascadingAnimators.Remove(this);
+		*/
+		this.childrenCascadingAnimators = this.GetComponentsInDirectChildren<CascadingAnimator>();
 	}
 
 	protected virtual void Update()
@@ -71,5 +75,15 @@ public abstract class CascadingAnimator : MonoBehaviour
 	{
 		Debug.LogError("You tried to cancel the '" + this.curAnim.ToString() + "' animation on the '" + this.gameObject.name + "' whereas its 'CascadingAnimator' component can't. \n" +
 			"You may have forgotten to call the corresponding function in the 'CancelCurrentAnim()' switch.");
+	}
+
+	protected void LogPlayAnim(e_AnimationType _animType)
+	{
+		Debug.Log(this.gameObject.name + " plays anim : " + _animType.ToString());
+	}
+
+	protected void LogCancelAnim(e_AnimationType _animType)
+	{
+		Debug.Log(this.gameObject.name + " cancel anim : " + _animType.ToString());
 	}
 }

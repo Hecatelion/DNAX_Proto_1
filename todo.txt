@@ -7,6 +7,7 @@ next tasks:
  - corresponding prefabs : 
 	+ test Propagate() func all cases
 	+ test error messages (play & cancel)
+
 	+ test Animation (play & cancel) 
 		+ Animation 1 : classical unity animator stuff
 		+ Animation 2 : code executing an anim (e.g. color shading w/ in code) 
@@ -14,6 +15,7 @@ next tasks:
 		+ Animation 3 : subModel.setActive(true/false) (+ play anim?)
 	+ test 2 different layers
 	+ submodel instantiation/SetActive(true/false)
+ - should manage animations types w/ scriptable objects ? 
  - put visual effect on organism (appart from logic code)
 	-> Passive.onActivation()
 	-> Ability.onActivation()

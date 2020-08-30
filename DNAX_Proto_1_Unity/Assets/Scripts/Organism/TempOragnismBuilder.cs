@@ -5,6 +5,7 @@ using UnityEngine;
 public class TempOragnismBuilder : MonoBehaviour
 {
 	[SerializeField] GameObject organismPrefab;
+	[SerializeField] OrganismCascadingAnimator organismCA;
 	
 	GameObject organismGO;
 	DNA dna1;
@@ -17,11 +18,14 @@ public class TempOragnismBuilder : MonoBehaviour
 		this.dna2 = new DNA(new List<e_GeneType> { e_GeneType.Heal, e_GeneType.None });
 		this.dna3 = new DNA(new List<e_GeneType> { e_GeneType.AntiDot, e_GeneType.None, e_GeneType.None });
 
-		this.organismGO = InstantiateNewOrganism(this.dna3);
+		//this.organismGO = InstantiateNewOrganism(this.dna3);
     }
 
 	private void Update()
 	{
+		/*
+			ORGANISM CREATION AND DNA CHANGING
+		
 		if (Input.GetKeyDown(KeyCode.Space))
 		{
 			this.organismGO.GetComponent<Organism>().Clear();
@@ -36,6 +40,17 @@ public class TempOragnismBuilder : MonoBehaviour
 		if (Input.GetKeyDown(KeyCode.Return))
 		{
 			this.organismGO = InstantiateNewOrganism(this.dna1);
+		}
+		*/
+
+		if (Input.GetKeyDown(KeyCode.Keypad1))
+		{
+			this.organismCA.RequestAnim(e_AnimationType.Idle);
+		}
+
+		if (Input.GetKeyDown(KeyCode.Keypad2))
+		{
+			this.organismCA.RequestAnim(e_AnimationType.Walk);
 		}
 	}
 

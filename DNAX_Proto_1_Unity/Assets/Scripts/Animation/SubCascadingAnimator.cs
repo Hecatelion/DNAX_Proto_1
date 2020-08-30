@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class OrganismCascadingAnimator : CascadingAnimator
+public class SubCascadingAnimator : CascadingAnimator
 {
     protected override void Start()
     {
@@ -19,7 +19,6 @@ public class OrganismCascadingAnimator : CascadingAnimator
 		switch (_animType)
 		{
 			case e_AnimationType.Idle:		PlayIdleAnim();			break;
-			case e_AnimationType.Walk:		PlayWalkAnim();			break;
 
 			// if animTypes has _animType but switch doesnt call the corresponding func
 			default:	LogErrorPlayAnim(_animType);	return;		
@@ -38,7 +37,6 @@ public class OrganismCascadingAnimator : CascadingAnimator
 			case e_AnimationType.None:		return;		
 
 			case e_AnimationType.Idle:		CancelIdleAnim();		break;
-			case e_AnimationType.Walk:		CancelWalkAnim();		break;
 
 			// if switch doesnt call the func corresponding to curAnim
 			default:	LogErrorCancelCurAnim();	return;
@@ -58,23 +56,9 @@ public class OrganismCascadingAnimator : CascadingAnimator
 
 	private void CancelIdleAnim()
 	{
-		// animator.StopAnim("walking_state");
-		// -> Unity classical anim stuff  
-		// DestroyFx("dust_paillette"); ? or let them finish their stuff ?
-	}
-
-	private void PlayWalkAnim()
-	{
 		// animator.PlayAnim("walking_state");
 		// -> Unity classical anim stuff  
 		// LaunchFx("dust_paillette");
-	}
-
-	private void CancelWalkAnim()
-	{
-		// animator.StopAnim("walking_state");
-		// -> Unity classical anim stuff  
-		// DestroyFx("dust_paillette"); ? or let them finish their stuff ?
 	}
 
 	#endregion
