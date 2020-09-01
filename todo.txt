@@ -1,20 +1,19 @@
 cur step :
 
 next tasks: 
-
- - CascadingAnimator, OrganismCascadingAnimator, e_AnimationType
  
  - corresponding prefabs : 
 	+ test Propagate() func all cases
 	+ test error messages (play & cancel)
 
-	+ test Animation (play & cancel) 
-		+ Animation 1 : classical unity animator stuff
-		+ Animation 2 : code executing an anim (e.g. color shading w/ in code) 
-				(corroutines possible?)
-		+ Animation 3 : subModel.setActive(true/false) (+ play anim?)
-	+ test 2 different layers
-	+ submodel instantiation/SetActive(true/false)
+	+ test Animations (play & cancel)
+		+ classical unity animator stuff
+		+ fx 
+	+ write in tech doc :
+		+ submodel instantiation/SetActive(true/false)
+		+ test 2 different layers
+		+ white board ideas
+		+ need anchors in anims (to be able to follow pos and rot but not scale)
  - should manage animations types w/ scriptable objects ? 
  - put visual effect on organism (appart from logic code)
 	-> Passive.onActivation()

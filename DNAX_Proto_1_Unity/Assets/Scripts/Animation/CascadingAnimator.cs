@@ -9,7 +9,7 @@ public abstract class CascadingAnimator : MonoBehaviour
 
 	/*protected*/ public e_AnimationType curAnim;
 	protected Animator animator;
-	/*protected*/ public List<CascadingAnimator> childrenCascadingAnimators;
+	protected List<CascadingAnimator> childrenCascadingAnimators;
 
 	protected virtual void Start()
 	{
