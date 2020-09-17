@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class OrganismCascadingAnimator : CascadingAnimator
 {
+	[SerializeField] GameObject healFX;
+
     protected override void Start()
     {
 		base.Start();
@@ -80,6 +82,14 @@ public class OrganismCascadingAnimator : CascadingAnimator
 		// -> Unity classical anim stuff  
 		// DestroyFx("dust_paillette"); ? or let them finish their stuff ?
 	}
+
+	private void PlayHealAnim()
+	{
+		// LaunchFx("heal_paillettes");
+	}
+
+	private void CancelHealAnim()
+	{ }
 
 	#endregion
 }
