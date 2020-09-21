@@ -24,7 +24,7 @@ public class TempOragnismBuilder : MonoBehaviour
 	private void Update()
 	{
 		/*
-			ORGANISM CREATION AND DNA CHANGING
+		// ORGANISM CREATION AND DNA CHANGING
 		
 		if (Input.GetKeyDown(KeyCode.Space))
 		{
