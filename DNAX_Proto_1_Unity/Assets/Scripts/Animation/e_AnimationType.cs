@@ -8,6 +8,7 @@ public enum e_AnimationType
 
 	Idle,
 	Walk,
+	Heal,
 	
 	Count
 }

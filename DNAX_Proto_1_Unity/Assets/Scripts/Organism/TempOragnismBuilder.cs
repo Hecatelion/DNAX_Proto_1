@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.VFX;
 
 public class TempOragnismBuilder : MonoBehaviour
 {
@@ -51,6 +52,11 @@ public class TempOragnismBuilder : MonoBehaviour
 		if (Input.GetKeyDown(KeyCode.Keypad2))
 		{
 			this.organismCA.RequestAnim(e_AnimationType.Walk);
+		}
+
+		if (Input.GetKeyDown(KeyCode.Keypad3))
+		{
+			this.organismCA.RequestAnim(e_AnimationType.Heal);
 		}
 	}
 

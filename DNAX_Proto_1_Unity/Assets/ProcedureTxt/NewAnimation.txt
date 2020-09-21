@@ -1,0 +1,6 @@
+1) Add value to e_animType
+2) Create animation
+3) Add animation state in animator
+4) Add e_animType in Prefabs SerializeField anims
+5) Implement PlayNewAnim() and CancelNewAnim() in CascadingAnimators
+6) Add those 2 to the associated switch in CascadingAnimators

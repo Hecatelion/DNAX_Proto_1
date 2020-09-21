@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class OrganismCascadingAnimator : CascadingAnimator
 {
-	[SerializeField] GameObject healFX;
+	[SerializeField] GameObject fxHealPrefab;
 
     protected override void Start()
     {
@@ -22,6 +22,7 @@ public class OrganismCascadingAnimator : CascadingAnimator
 		{
 			case e_AnimationType.Idle:		PlayIdleAnim();			break;
 			case e_AnimationType.Walk:		PlayWalkAnim();			break;
+			case e_AnimationType.Heal:		PlayHealAnim();			break;
 
 			// if animTypes has _animType but switch doesnt call the corresponding func
 			default:	LogErrorPlayAnim(_animType);	return;		
@@ -41,6 +42,7 @@ public class OrganismCascadingAnimator : CascadingAnimator
 
 			case e_AnimationType.Idle:		CancelIdleAnim();		break;
 			case e_AnimationType.Walk:		CancelWalkAnim();		break;
+			case e_AnimationType.Heal:		CancelHealAnim();		break;
 
 			// if switch doesnt call the func corresponding to curAnim
 			default:	LogErrorCancelCurAnim();	return;
@@ -85,7 +87,7 @@ public class OrganismCascadingAnimator : CascadingAnimator
 
 	private void PlayHealAnim()
 	{
-		// LaunchFx("heal_paillettes");
+		Instantiate(this.fxHealPrefab, this.transform);
 	}
 
 	private void CancelHealAnim()

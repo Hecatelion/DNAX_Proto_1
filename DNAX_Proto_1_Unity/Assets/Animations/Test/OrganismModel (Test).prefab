@@ -46,6 +46,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   animationTypes: 0000000001000000
   curAnim: -1
+  fxHealPrefab: {fileID: 0}
 --- !u!95 &5940902322082921195
 Animator:
   serializedVersion: 3
@@ -242,8 +243,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b6fad92a4eb320545a520f52fe485a03, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  animationTypes: 0000000001000000
+  animationTypes: 000000000100000002000000
   curAnim: -1
+  fxHealPrefab: {fileID: 0}
 --- !u!95 &5940902323336272945
 Animator:
   serializedVersion: 3
