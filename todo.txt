@@ -19,5 +19,6 @@ next tasks:
  - Camera management
 
  (?) should manage animations types w/ scriptable objects ? 
- (!) make an fx manager and take fxs out of Cascading Animator
-     (example a bullet shooting doesnt have any anim but launch fx, + fx isnt an anim) 
+ (!) make an fx manager (or FXator, a script attached to a GO (eg. organismGO)) 
+	and bind fx to GO.callbacks and take fxs out of Cascading Animator
+     	(example a bullet shooting doesnt have any anim but launch fx, + fx isnt an anim) 
