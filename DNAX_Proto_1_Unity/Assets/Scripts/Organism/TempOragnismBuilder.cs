@@ -16,7 +16,7 @@ public class TempOragnismBuilder : MonoBehaviour
     void Start()
     {
 		this.dna1 = new DNA(new List<e_GeneType> { e_GeneType.Photosynthesis, e_GeneType.None, e_GeneType.None, e_GeneType.None });
-		this.dna2 = new DNA(new List<e_GeneType> { e_GeneType.Heal, e_GeneType.None });
+		this.dna2 = new DNA(new List<e_GeneType> { e_GeneType.Photosynthesis, e_GeneType.Heal });
 		this.dna3 = new DNA(new List<e_GeneType> { e_GeneType.AntiDot, e_GeneType.None, e_GeneType.None });
 
 		//this.organismGO = InstantiateNewOrganism(this.dna3);
@@ -24,7 +24,6 @@ public class TempOragnismBuilder : MonoBehaviour
 
 	private void Update()
 	{
-		/*
 		// ORGANISM CREATION AND DNA CHANGING
 		
 		if (Input.GetKeyDown(KeyCode.Space))
@@ -42,8 +41,8 @@ public class TempOragnismBuilder : MonoBehaviour
 		{
 			this.organismGO = InstantiateNewOrganism(this.dna1);
 		}
-		*/
 
+		/*
 		if (Input.GetKeyDown(KeyCode.Keypad1))
 		{
 			this.organismCA.RequestAnim(e_AnimationType.Idle);
@@ -58,6 +57,7 @@ public class TempOragnismBuilder : MonoBehaviour
 		{
 			this.organismCA.RequestAnim(e_AnimationType.Heal);
 		}
+		*/
 	}
 
 	// factory

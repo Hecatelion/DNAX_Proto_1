@@ -1,6 +1,4 @@
-cur step :
-
-next tasks: 
+last step :
  
  - corresponding prefabs : 
 	+ test Animations (play & cancel)
@@ -9,14 +7,27 @@ next tasks:
 		+ upgrading unity (so FX graph is supported on URP)
 		+ fx 
 
- - put visual effect on organism (appart from logic code)
+next tasks: 
+
+ - put visual effects on organism (appart from code logic) (cf tempOrganismBuilder)
+// = put their fxs and feedbacks on skills, stop calling Heal FX on PlayerCascadingAnimator
+// eg. a fireball anim and fxs should be called and managed by the fireball skill object, not a player.animator.PlayAnim(FireBall)
 	-> Passive.onActivation()
 	-> Ability.onActivation()
 	-> Organism.onDeath()
  - shade the organism model according to dna (size, colors, etc.)
  - model anchor system ? (to place automatically sub-models on their parent 
 	depending on which spots are free, to avoid sub-model overlapping)
- - Camera management
+ - Camera management 
+	- tracking : character or asteroid on death (use a default transform position while asteroid not coded)
+	- zoom according to organism scale ? (organism getting bigger or world getting smaller ?)
+- asteroid 
+	- managing organism creation raw
+	- w/ UI
+	- build saving ?
+	- DNA storage ? 
+
+- organism instrude, DNA gathering (modify current DNA then bring it back to astroid)
 
  (?) should manage animations types w/ scriptable objects ? 
  (!) make an fx manager (or FXator, a script attached to a GO (eg. organismGO)) 
