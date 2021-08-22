@@ -6,8 +6,8 @@ using UnityEngine.VFX;
 public class AutoDestroyFx : MonoBehaviour
 {
 	VisualEffect fx;
-	float t = 0;
-	bool b = false;
+	//float t = 0;
+	//bool b = false;
 
 	private void Start()
 	{
@@ -18,7 +18,7 @@ public class AutoDestroyFx : MonoBehaviour
 
 		/*this.fx.Stop();
 		this.b = true;*/
-		
+
 		StartCoroutine(DestroyOnEnd());
 	}
 

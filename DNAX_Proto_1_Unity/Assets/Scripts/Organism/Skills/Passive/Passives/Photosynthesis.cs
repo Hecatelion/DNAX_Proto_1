@@ -42,7 +42,7 @@ public class Photosynthesis : Passive
 		float healAmount = (this.delayInSecond == 0) ? this.healPerSecond * Time.deltaTime : this.healPerSecond * this.delayInSecond;
 		this.organism.ApplyStatsModif(new StatsModifier() { hpCur = healAmount });
 
-		Debug.Log("Passive : \"Photosyntesis\" activation. hp : " + this.organism.Stats.HpCur);
+		Debug.Log("Passive : \"Photosyntesis\" activation. hp : " + (int)this.organism.Stats.HpCur);
 	}
 
 	protected override void Deactivate()

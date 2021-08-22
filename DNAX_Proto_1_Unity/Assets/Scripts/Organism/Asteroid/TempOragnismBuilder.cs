@@ -9,6 +9,7 @@ public class TempOragnismBuilder : MonoBehaviour
 	[SerializeField] OrganismCascadingAnimator organismCA;
 	
 	GameObject organismGO;
+
 	DNA dna1;
 	DNA dna2;
 	DNA dna3;
