@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 using System.Linq;
 
 public static class ExtensionMethods 
@@ -35,5 +36,14 @@ public static class ExtensionMethods
 
 		return result;
 		*/
+	}
+
+	public static void SetValueFormString(this Dropdown dd, string _optionName)
+	{
+		// returns a list of the text properties of the options
+		List<string> options = dd.options.Select(option => option.text).ToList();
+
+		// returns the index of the given string
+		dd.value = options.IndexOf(_optionName);
 	}
 }

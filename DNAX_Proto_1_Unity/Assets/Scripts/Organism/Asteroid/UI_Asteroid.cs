@@ -10,13 +10,15 @@ public class UI_Asteroid : MonoBehaviour
 	OrganismBuilder builder;
 
 	// WIP
-	// List<UI_Gene> uiGenes;
-	Dropdown geneDropdown;
-
+	List<UI_GeneSelector> uiGeneSelectors;
+	
     void Start()
     {
+		uiGeneSelectors = new List<UI_GeneSelector>();
+		uiGeneSelectors.Add(FindObjectOfType<UI_GeneSelector>());
+
 		asteroid = GetComponentInParent<Asteroid>();
-		geneDropdown = GetComponentInChildren<Dropdown>();
+		builder = GetComponentInParent<OrganismBuilder>();
 
 		// WIP
 		/*
@@ -28,34 +30,31 @@ public class UI_Asteroid : MonoBehaviour
     void Update() 
 	{ }
 
-	void InitDropdown(Dropdown _dropdown, List<string> _items)
+	void AddCell()
 	{
-		_dropdown.ClearOptions();
-		_dropdown.AddOptions(_items);
+		// new gene selector and other stuff
 	}
 
-	void InitDropdownFromGenes(Dropdown _dropdown, List<e_GeneType> _genes)
+	DNA GetDNAFromUIGeneSelectors()
 	{
-		InitDropdown(_dropdown, (from g in _genes select g.ToString()).ToList());
-	}
+		List<e_GeneType> genes = new List<e_GeneType>();
 
-	void AddGeneInUI()
-	{
+		foreach (var selector in uiGeneSelectors)
+		{
+			genes.Add(selector.gene);
+		}
 
+		return new DNA(genes);
 	}
 
 #region ButtonFunctions
 
 	public void BUTTON_SpawnOrganism()
 	{
-		builder.InstantiateNewOrganism(builder.dna1);
+		DNA dna = GetDNAFromUIGeneSelectors();
+		builder.InstantiateNewOrganism(dna);
 
 		gameObject.SetActive(false);
-	}
-
-	public void BUTTON_GeneSelection()
-	{
-		InitDropdownFromGenes(this.geneDropdown, asteroid.GeneStorage);
 	}
 
 #endregion

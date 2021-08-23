@@ -1,0 +1,11 @@
+done: 
+
+- finish UI_GeneSelector.cs 
+	v select gene w/ dropdown 
+	v SetGeneToDropdownValue() 
+	v UI_GeneSelector change OrganismBuilder.curDNA
+
+todo next:
+
+- add multiple cell (multiple UI_GeneSelector)
+- put restriction on when player can interact w/ asteroid 

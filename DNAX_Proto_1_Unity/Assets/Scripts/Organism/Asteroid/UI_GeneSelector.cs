@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using System.Linq;
+using System;
 
 public class UI_GeneSelector : MonoBehaviour
 {
@@ -12,21 +13,18 @@ public class UI_GeneSelector : MonoBehaviour
 
 	Asteroid asteroid;
 
-	UI_GeneSelector(Button _btn, Dropdown _dd, e_GeneType _gene = e_GeneType.None)
-	{
-		gene = _gene;
-		btn = _btn;
-	}
-
 	void Start()
     {
-		dd = GetComponentInChildren<Dropdown>();
+		this.asteroid = GetComponentInParent<Asteroid>();
+		this.dd.gameObject.SetActive(false);
+
+		SetGene(e_GeneType.None);
     }
 
     void Update()
     {
-        
-    }
+
+	}
 
 	void InitDropdown(Dropdown _dropdown, List<string> _items)
 	{
@@ -36,6 +34,33 @@ public class UI_GeneSelector : MonoBehaviour
 
 	void InitDropdownFromGenes(Dropdown _dropdown, List<e_GeneType> _genes)
 	{
-		InitDropdown(_dropdown, (from g in _genes select g.ToString()).ToList());
+		List<e_GeneType> genes = new List<e_GeneType>();
+		genes.Add(e_GeneType.None);
+		genes.AddRange(_genes);
+
+		InitDropdown(_dropdown, (from g in genes select g.ToString()).ToList());
+	}
+
+	void SetGene(e_GeneType _g)
+	{
+		gene = _g;
+		btn.GetComponentsInVeryChildren<Text>()[0].text = gene.ToString(); // add an exception : if (none) text = "empty"
+	}
+
+	// UI Functions
+
+	public void BUTTON_OpenGeneSelection()
+	{
+		this.dd.gameObject.SetActive(true);
+
+		InitDropdownFromGenes(this.dd, this.asteroid.GeneStorage);
+		dd.SetValueFormString(gene.ToString());
+	} 
+
+	public void DROPDOWN_SelectGene()
+	{
+		SetGene((e_GeneType)Enum.Parse(typeof(e_GeneType), dd.captionText.text));
+
+		this.dd.gameObject.SetActive(false);
 	}
 }
