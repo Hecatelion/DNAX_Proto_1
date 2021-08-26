@@ -6,33 +6,69 @@ using System.Linq;
 
 public class UI_Asteroid : MonoBehaviour
 {
-	Asteroid asteroid;
-	OrganismBuilder builder;
+	[SerializeField] RectTransform geneSelectionRect;
 
-	// WIP
-	List<UI_GeneSelector> uiGeneSelectors;
-	
-    void Start()
+	Asteroid asteroid;
+
+	[SerializeField] GameObject geneSelectorPrefab;
+	public List<UI_GeneSelector> uiGeneSelectors;
+	[SerializeField] GameObject addCellButton;
+
+	void Start()
     {
 		uiGeneSelectors = new List<UI_GeneSelector>();
-		uiGeneSelectors.Add(FindObjectOfType<UI_GeneSelector>());
 
 		asteroid = GetComponentInParent<Asteroid>();
-		builder = GetComponentInParent<OrganismBuilder>();
 
-		// WIP
-		/*
-		uiGenes = new List<UI_Gene>();
-		uiGenes.Add(new ) 
-		*/
-    }
+		gameObject.SetActive(false);
 
-    void Update() 
+		addCellButton.GetComponent<RectTransform>().localPosition = Vector2.zero;
+	}
+
+	void Update() 
 	{ }
+	
+	public void Init()
+	{
+		/*
+		foreach (var gs in uiGeneSelectors)
+		{
+			gs.Init();
+		}
+		*/
+	
+		gameObject.SetActive(true);
+	}
+
+	void UpdateAddCellButtonAvailability()
+	{
+		addCellButton.SetActive(!(uiGeneSelectors.Count == asteroid.nbCells));
+	}
+
+	void UpdateGeneSelectorsPosition()
+	{
+		float height = geneSelectorPrefab.GetComponent<RectTransform>().rect.height;
+
+		for (int i = 0; i < uiGeneSelectors.Count; i++)
+		{
+			RectTransform rt = uiGeneSelectors[i].gameObject.GetComponent<RectTransform>();
+			rt.localPosition = Vector2.down * height * i;
+		}
+
+		addCellButton.GetComponent<RectTransform>().localPosition = Vector2.down * height * uiGeneSelectors.Count;
+	}
 
 	void AddCell()
 	{
-		// new gene selector and other stuff
+		//nb++;
+		GameObject newGeneSelector = Instantiate(geneSelectorPrefab, geneSelectionRect);
+		//newGeneSelector.name = "gene selectore " + nb;
+		UI_GeneSelector uiNewGS = newGeneSelector.GetComponent<UI_GeneSelector>();
+		uiNewGS.Init();
+		uiGeneSelectors.Add(uiNewGS);
+
+		UpdateGeneSelectorsPosition();
+		UpdateAddCellButtonAvailability();
 	}
 
 	DNA GetDNAFromUIGeneSelectors()
@@ -52,9 +88,12 @@ public class UI_Asteroid : MonoBehaviour
 	public void BUTTON_SpawnOrganism()
 	{
 		DNA dna = GetDNAFromUIGeneSelectors();
-		builder.InstantiateNewOrganism(dna);
+		asteroid.SpawnOrganism(dna);
+	}
 
-		gameObject.SetActive(false);
+	public void BUTTON_AddCell()
+	{
+		AddCell();
 	}
 
 #endregion

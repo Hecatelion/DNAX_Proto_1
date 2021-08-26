@@ -22,28 +22,21 @@ public static class ExtensionMethods
 
 		return (from child in children 
 				where child.transform.parent == _component.transform 
-				select child).ToList(); //new List<T>();
-
-		
-		/*
-		foreach (var child in children)
-		{
-			if (child.transform.parent == _component.transform)
-			{
-				result.Remove(_component as T);
-			}
-		}
-
-		return result;
-		*/
+				select child).ToList();
 	}
 
-	public static void SetValueFormString(this Dropdown dd, string _optionName)
+	/*
+	 * This made dropdown bug, after using the dd.value = ... the dd become unable to be set active true/false
+	 * 
+	public static void SetValueFromString(this Dropdown dd, string _optionName)
 	{
 		// returns a list of the text properties of the options
-		List<string> options = dd.options.Select(option => option.text).ToList();
+		//List<string> options = dd.options.Select(option => option.text).ToList();
 
 		// returns the index of the given string
-		dd.value = options.IndexOf(_optionName);
+		//dd.value = options.IndexOf(_optionName);
+
+		//dd.value = 1;
 	}
+	*/
 }
