@@ -20,8 +20,6 @@ public class UI_Asteroid : MonoBehaviour
 
 		asteroid = GetComponentInParent<Asteroid>();
 
-		gameObject.SetActive(false);
-
 		addCellButton.GetComponent<RectTransform>().localPosition = Vector2.zero;
 	}
 
@@ -36,8 +34,6 @@ public class UI_Asteroid : MonoBehaviour
 			gs.Init();
 		}
 		*/
-	
-		gameObject.SetActive(true);
 	}
 
 	void UpdateAddCellButtonAvailability()
@@ -58,17 +54,39 @@ public class UI_Asteroid : MonoBehaviour
 		addCellButton.GetComponent<RectTransform>().localPosition = Vector2.down * height * uiGeneSelectors.Count;
 	}
 
+	void UpdateUIPosition()
+	{
+		UpdateGeneSelectorsPosition();
+		UpdateAddCellButtonAvailability();
+	}
+
 	void AddCell()
 	{
-		//nb++;
 		GameObject newGeneSelector = Instantiate(geneSelectorPrefab, geneSelectionRect);
-		//newGeneSelector.name = "gene selectore " + nb;
 		UI_GeneSelector uiNewGS = newGeneSelector.GetComponent<UI_GeneSelector>();
 		uiNewGS.Init();
 		uiGeneSelectors.Add(uiNewGS);
 
-		UpdateGeneSelectorsPosition();
-		UpdateAddCellButtonAvailability();
+		UpdateUIPosition();
+	}
+
+	public void RemoveCell(UI_GeneSelector _gs)
+	{
+		uiGeneSelectors.Remove(_gs);
+
+		UpdateUIPosition();
+	}
+
+	void RemoveAllCells()
+	{
+		foreach (var gs in uiGeneSelectors)
+		{
+			Destroy(gs.gameObject);
+		}
+
+		uiGeneSelectors.Clear();
+
+		UpdateUIPosition();
 	}
 
 	DNA GetDNAFromUIGeneSelectors()
@@ -89,6 +107,8 @@ public class UI_Asteroid : MonoBehaviour
 	{
 		DNA dna = GetDNAFromUIGeneSelectors();
 		asteroid.SpawnOrganism(dna);
+
+		RemoveAllCells();
 	}
 
 	public void BUTTON_AddCell()

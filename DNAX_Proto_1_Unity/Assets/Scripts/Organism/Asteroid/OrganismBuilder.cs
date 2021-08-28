@@ -51,6 +51,9 @@ public class OrganismBuilder : MonoBehaviour
 		newOrganism.name = "New Organism";
 		newOrganism.GetComponent<Organism>().Init(_dna);
 
+		Debug.Log("New Organism");
+		_dna.Log();
+
 		return newOrganism;
 	}
 }

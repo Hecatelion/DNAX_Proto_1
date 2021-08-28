@@ -11,6 +11,7 @@ public class UI_GeneSelector : MonoBehaviour
 	[HideInInspector] public Dropdown dd;
 
 	Asteroid asteroid;
+	UI_Asteroid uiAsteroid;
 
 	void Start()
     {
@@ -23,12 +24,11 @@ public class UI_GeneSelector : MonoBehaviour
 	public void Init()
 	{
 		this.asteroid = GetComponentInParent<Asteroid>();
+		this.uiAsteroid = GetComponentInParent<UI_Asteroid>();
 		this.dd = GetComponentInChildren<Dropdown>();
 
 		SetGene(e_GeneType.None);
 		InitDropdownFromGenes(dd, asteroid.GeneStorage);
-
-		Debug.Log(gameObject.name);
 	}
 
 	void InitDropdown(Dropdown _dropdown, List<string> _items)
@@ -56,5 +56,11 @@ public class UI_GeneSelector : MonoBehaviour
 	public void DROPDOWN_SelectGene()
 	{
 		SetGene((e_GeneType)Enum.Parse(typeof(e_GeneType), dd.captionText.text));
+	}
+
+	public void BUTTON_RemoveGeneSelector()
+	{
+		this.uiAsteroid.RemoveCell(this);
+		Destroy(this.gameObject);
 	}
 }

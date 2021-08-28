@@ -23,11 +23,13 @@ public class Asteroid : MonoBehaviour
 	{
 		this.model = GetComponentInChildren<ClickableModel>();
 		this.ui = GetComponentInChildren<UI_Asteroid>();
-		builder = GetComponentInParent<OrganismBuilder>();
+		this.builder = GetComponentInParent<OrganismBuilder>();
 
+
+		this.ui.gameObject.SetActive(false);
 		AllowInterraction();
 
-		geneStorage = new List<e_GeneType> { e_GeneType.Photosynthesis, e_GeneType.Heal, e_GeneType.Spikes };
+		this.geneStorage = new List<e_GeneType> { e_GeneType.Photosynthesis, e_GeneType.Heal, e_GeneType.Spikes };
     }
 
     void Update()
@@ -35,7 +37,8 @@ public class Asteroid : MonoBehaviour
 
 	private void OpenUI()
 	{
-		ui.Init();
+		this.ui.gameObject.SetActive(true);
+		this.ui.Init();
 	}
 
 	public void AllowInterraction()
@@ -50,10 +53,10 @@ public class Asteroid : MonoBehaviour
 
 	public void SpawnOrganism(DNA _dna)
 	{
-		curOrganism = builder.InstantiateNewOrganism(_dna).GetComponent<Organism>();
-		curOrganism.onDeath += AllowInterraction;
+		this.curOrganism = this.builder.InstantiateNewOrganism(_dna).GetComponent<Organism>();
+		this.curOrganism.onDeath += AllowInterraction;
 
 		DisallowInterraction();
-		ui.gameObject.SetActive(false);
+		this.ui.gameObject.SetActive(false);
 	}
 }
