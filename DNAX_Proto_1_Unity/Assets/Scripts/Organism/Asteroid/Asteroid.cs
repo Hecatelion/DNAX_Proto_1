@@ -2,43 +2,46 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+/*
+ * Split it in 2 sub-scripts ? : 
+ * - Organism Manager
+ * - Asteroid 
+*/
+
 public class Asteroid : MonoBehaviour
 {
-	ClickableModel model;
-	UI_Asteroid ui;
-	OrganismBuilder builder;
+	DNAStorage storage;
+	public DNAStorage Storage { get => storage; }
+
+	// Organism Management
+	OrganismFactory factory;
 	Organism curOrganism;
 
+	// Interraction
+	ClickableModel model;
+	UI_Asteroid ui;
 	bool isUsable = true;
 	public bool IsUsable { get => isUsable; }
 
-	// put it in Organism Builder ?
-	// {
-	List<e_GeneType> geneStorage;
-	public List<e_GeneType> GeneStorage { get=>geneStorage; }
-	public int nbCells = 5;
-	// }
-
 	void Start()
 	{
+		this.storage = GetComponentInChildren<DNAStorage>();
+		this.factory= GetComponentInParent<OrganismFactory>();
+
 		this.model = GetComponentInChildren<ClickableModel>();
 		this.ui = GetComponentInChildren<UI_Asteroid>();
-		this.builder = GetComponentInParent<OrganismBuilder>();
-
-
 		this.ui.gameObject.SetActive(false);
 		AllowInterraction();
-
-		this.geneStorage = new List<e_GeneType> { e_GeneType.Photosynthesis, e_GeneType.Heal, e_GeneType.Spikes };
     }
 
     void Update()
     { }
 
+	#region Interraction
+
 	private void OpenUI()
 	{
-		this.ui.gameObject.SetActive(true);
-		this.ui.Init();
+		this.ui.gameObject.SetActiveRecursively(true);
 	}
 
 	public void AllowInterraction()
@@ -51,12 +54,18 @@ public class Asteroid : MonoBehaviour
 		this.model.onClick -= OpenUI;
 	}
 
+	#endregion
+
+	#region Organism Management
+
 	public void SpawnOrganism(DNA _dna)
 	{
-		this.curOrganism = this.builder.InstantiateNewOrganism(_dna).GetComponent<Organism>();
+		this.curOrganism = this.factory.InstantiateNewOrganism(_dna, this.transform.position + Vector3.left * 2).GetComponent<Organism>();
 		this.curOrganism.onDeath += AllowInterraction;
 
 		DisallowInterraction();
 		this.ui.gameObject.SetActive(false);
 	}
+
+	#endregion
 }

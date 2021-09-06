@@ -4,29 +4,30 @@ using UnityEngine;
 
 // Design pattern : factory
 
-public class OrganismBuilder : MonoBehaviour
+public class OrganismFactory : MonoBehaviour
 {
 	[SerializeField] GameObject organismPrefab;
-
 	GameObject organismGO;
 
-	public List<e_GeneType> genes;
-
+	//public List<e_GeneType> genes;
+	/*
 	public DNA dna1;
 	DNA dna2;
 	DNA dna3;
-
+	*/
 	void Start()
 	{
+		/*
 		this.dna1 = new DNA(new List<e_GeneType> { e_GeneType.Photosynthesis, e_GeneType.None, e_GeneType.None, e_GeneType.None });
 		this.dna2 = new DNA(new List<e_GeneType> { e_GeneType.Photosynthesis, e_GeneType.Heal });
 		this.dna3 = new DNA(new List<e_GeneType> { e_GeneType.AntiDot, e_GeneType.None, e_GeneType.None });
+		*/
 	}
 
 	private void Update()
 	{
 		// ORGANISM CREATION AND DNA CHANGING
-
+		/*
 		if (Input.GetKeyDown(KeyCode.Tab))
 		{
 			this.organismGO.GetComponent<Organism>().Clear();
@@ -42,12 +43,13 @@ public class OrganismBuilder : MonoBehaviour
 		{
 			this.organismGO = InstantiateNewOrganism(this.dna1);
 		}
+		*/
 	}
 
 	// factory method
-	public GameObject InstantiateNewOrganism(DNA _dna)
+	public GameObject InstantiateNewOrganism(DNA _dna, Vector3 _pos)
 	{
-		GameObject newOrganism = Instantiate(this.organismPrefab, Vector3.up * 0.5f, Quaternion.identity);
+		GameObject newOrganism = Instantiate(this.organismPrefab, _pos, Quaternion.identity);
 		newOrganism.name = "New Organism";
 		newOrganism.GetComponent<Organism>().Init(_dna);
 

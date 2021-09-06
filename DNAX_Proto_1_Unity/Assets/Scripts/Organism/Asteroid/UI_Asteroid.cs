@@ -25,20 +25,10 @@ public class UI_Asteroid : MonoBehaviour
 
 	void Update() 
 	{ }
-	
-	public void Init()
-	{
-		/*
-		foreach (var gs in uiGeneSelectors)
-		{
-			gs.Init();
-		}
-		*/
-	}
 
 	void UpdateAddCellButtonAvailability()
 	{
-		addCellButton.SetActive(!(uiGeneSelectors.Count == asteroid.nbCells));
+		addCellButton.SetActive(!(uiGeneSelectors.Count == asteroid.Storage.NbCells));
 	}
 
 	void UpdateGeneSelectorsPosition()

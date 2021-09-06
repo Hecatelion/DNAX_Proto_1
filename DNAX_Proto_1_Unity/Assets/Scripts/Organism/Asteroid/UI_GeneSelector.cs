@@ -21,6 +21,7 @@ public class UI_GeneSelector : MonoBehaviour
     void Update()
     { }
 
+	
 	public void Init()
 	{
 		this.asteroid = GetComponentInParent<Asteroid>();
@@ -28,7 +29,7 @@ public class UI_GeneSelector : MonoBehaviour
 		this.dd = GetComponentInChildren<Dropdown>();
 
 		SetGene(e_GeneType.None);
-		InitDropdownFromGenes(dd, asteroid.GeneStorage);
+		InitDropdownFromGenes(dd, asteroid.Storage.Genes);
 	}
 
 	void InitDropdown(Dropdown _dropdown, List<string> _items)
@@ -46,6 +47,7 @@ public class UI_GeneSelector : MonoBehaviour
 		InitDropdown(_dropdown, (from g in genes select g.ToString()).ToList());
 	}
 	
+
 	void SetGene(e_GeneType _g)
 	{
 		gene = _g;
