@@ -1,10 +1,9 @@
 done: 
 
-- remove cell
-- reset UI on opening
+- camera tracking org / ast
+- UI organism dna displaying
 
-(UI asteroid "create organism (v.1)" completed
 
 todo next:
 
-- UI Organism !!
+- fix gene selection :(

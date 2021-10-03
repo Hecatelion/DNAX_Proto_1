@@ -18,6 +18,7 @@ public class Organism : MonoBehaviour
 	private new Rigidbody rigidbody;
 
 	public Stats Stats { get => this.stats; }
+	public DNA Dna { get => this.dna; }
 
 	void Start()
     {
