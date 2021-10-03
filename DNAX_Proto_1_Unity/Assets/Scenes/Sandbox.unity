@@ -213,6 +213,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3322208b89c2c4a4cb9fb291d38079ca, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  curOrganism: {fileID: 0}
+  curAsteroid: {fileID: 0}
 --- !u!1 &1068331446
 GameObject:
   m_ObjectHideFlags: 0
@@ -657,6 +659,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 3386588925807118626, guid: c777dd37b00414445b02e010d4b74fb9,
+        type: 3}
+      propertyPath: nbCells
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 5178235144168266189, guid: c777dd37b00414445b02e010d4b74fb9,
         type: 3}
       propertyPath: m_Name

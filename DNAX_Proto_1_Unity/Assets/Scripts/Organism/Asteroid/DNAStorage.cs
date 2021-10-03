@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class DNAStorage : MonoBehaviour
 {
-	int nbCells;
+	public int nbCells = 0;
 	public int NbCells { get => nbCells; }
 
 	List<e_GeneType> genes;
@@ -32,6 +32,11 @@ public class DNAStorage : MonoBehaviour
 		{
 			genes.Add((e_GeneType)i);
 		}
+	}
+
+	public void AddCell(int _nb = 1)
+	{
+		nbCells += _nb;
 	}
 
 	// OnIntrude += UpdateStorage

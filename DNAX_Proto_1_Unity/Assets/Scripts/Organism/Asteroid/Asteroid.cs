@@ -25,8 +25,10 @@ public class Asteroid : MonoBehaviour
 	void Start()
 	{
 		this.storage = GetComponentInChildren<DNAStorage>();
+		this.storage.AddCell(5);
 
 		this.model = GetComponentInChildren<ClickableModel>();
+
 		this.ui = GetComponentInChildren<UI_Asteroid>();
 		this.ui.gameObject.SetActive(false);
 		AllowInterraction();
