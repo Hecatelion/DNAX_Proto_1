@@ -14,7 +14,6 @@ public class Asteroid : MonoBehaviour
 	public DNAStorage Storage { get => storage; }
 
 	// Organism Management
-	OrganismFactory factory;
 	Organism curOrganism;
 
 	// Interraction
@@ -26,7 +25,6 @@ public class Asteroid : MonoBehaviour
 	void Start()
 	{
 		this.storage = GetComponentInChildren<DNAStorage>();
-		this.factory= GetComponentInParent<OrganismFactory>();
 
 		this.model = GetComponentInChildren<ClickableModel>();
 		this.ui = GetComponentInChildren<UI_Asteroid>();
@@ -60,7 +58,7 @@ public class Asteroid : MonoBehaviour
 
 	public void SpawnOrganism(DNA _dna)
 	{
-		this.curOrganism = this.factory.InstantiateNewOrganism(_dna, this.transform.position + Vector3.left * 2).GetComponent<Organism>();
+		this.curOrganism = TheOrganismFactory.Instance.InstantiateNewOrganism(_dna, this.transform.position + Vector3.left * 2).GetComponent<Organism>();
 		this.curOrganism.onDeath += AllowInterraction;
 
 		DisallowInterraction();

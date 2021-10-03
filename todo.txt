@@ -1,10 +1,10 @@
 done: 
 
-- gene selection UI
-
-todo next:
-
 - remove cell
 - reset UI on opening
+
+(UI asteroid "create organism (v.1)" completed
+
+todo next:
 
 - UI Organism !!

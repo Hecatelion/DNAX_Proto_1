@@ -27,7 +27,7 @@ public class Singleton<T> : MonoBehaviour
 		*/
 	}
 
-	protected static T Instance
+	public static T Instance
 	{
 		get
 		{

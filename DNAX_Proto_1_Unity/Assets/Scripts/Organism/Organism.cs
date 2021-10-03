@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -11,6 +12,7 @@ public class Organism : MonoBehaviour
 	private List<Passive> passives;
 	private List<Ability> abilities;
 
+	public Callback onSpawn = () => { };
 	public Callback onDeath = () => { };
 
 	private new Rigidbody rigidbody;
@@ -20,6 +22,8 @@ public class Organism : MonoBehaviour
 	void Start()
     {
 		this.rigidbody = GetComponent<Rigidbody>();
+
+		GameObject.FindObjectOfType<CustomCamera>().SetTarget(this.gameObject);
 	}
 
 	void Update()
