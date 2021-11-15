@@ -196,17 +196,4 @@ public class Organism : MonoBehaviour
 	}
 
 	#endregion
-	
-	#region Debug
-
-	void Funk1()
-	{
-		Debug.Log("Funk 1");
-	}
-	void Funk2()
-	{
-		Debug.Log("Funk 2");
-	}
-
-	#endregion
 }

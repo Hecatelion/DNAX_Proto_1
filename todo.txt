@@ -1,9 +1,7 @@
 done: 
 
-- camera tracking org / ast
-- UI organism dna displaying
-
+- fix gene selection
 
 todo next:
 
-- fix gene selection :(
+- 
